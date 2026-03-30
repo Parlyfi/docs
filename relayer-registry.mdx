@@ -1,40 +1,31 @@
 ---
 title: "Relayer Registry"
-description: "Learn how official relayer discovery works and how registry listing differs from protocol participation."
+description: "The relayer registry supports official frontend discovery and relayer public-key distribution. It does not permission the protocol and it does not create exclusive relay rights."
 ---
 
-The relayer registry supports official frontend discovery and relayer public-key distribution. It does not permission the protocol and it does not create exclusive relay rights.
-
-<CardGroup cols={2}>
-  <Card title="Relayer Registration" href="https://parly.fi/relayer">
-    Open the registration page.
-  </Card>
-  <Card title="Run a Relayer" href="/run-a-relayer">
-    Review the operator runtime and quickstart.
-  </Card>
-  <Card title="View Relayer Source" href="https://github.com/Parlyfi/parly-relayer">
-    Open the public relayer repo.
-  </Card>
-</CardGroup>
+- [Relayer Registration](https://parly.fi/relayer)
+- [Run a Relayer](/relayers)
+- [View Relayer Source](https://github.com/Parlyfi/parly-relayer)
 
 ## What the registry is for
 
-The official frontend needs to know:
+The official frontend needs to know which relayer execution addresses are officially discoverable and which relayer public keys it may encrypt bundles to. That is what the registry does.
 
-- which relayer execution addresses are officially discoverable
-- which relayer public keys it may encrypt bundles to
-
-That is what the registry does. It is a discovery layer for the official app. It is not a protocol-level allowlist.
+It is a discovery layer for the official app. It is not a protocol-level allowlist.
 
 ## Registry policy
 
-The official Parly registry supports a maximum of `10` live relayers.
+The official Parly registry supports a maximum of 10 live relayers.
 
-Registration is automatic if validation passes and a slot is available. Inactive relayers are removed from official discovery so slots can reopen without turning the product into a moderation queue or marketplace.
+Registration is automatic if validation passes and a slot is available. Inactive relayers are removed from official live discovery so slots can reopen without turning the product into a moderation marketplace or review queue.
+
+That keeps the registry lean, legible, and operator-grade.
 
 ## Register a relayer
 
-Go to [parly.fi/relayer](https://parly.fi/relayer).
+Go to:
+
+[parly.fi/relayer](https://parly.fi/relayer)
 
 You will need:
 
@@ -52,10 +43,15 @@ Registration succeeds automatically if:
 
 ## Registry states
 
-- `verified`: live in official frontend discovery
-- `inactive`: previously live, now removed from official discovery because of inactivity, operator withdrawal, manual disable action, or failed health expectations
-- `rejected`: failed automatic validation
+**Verified**
+Live in official frontend discovery.
+
+**Inactive**
+Previously live, now removed from official discovery because of inactivity, operator withdrawal, manual disable action, or failed health expectations.
+
+**Rejected**
+Failed automatic validation.
 
 ## Important note
 
-Official listing improves public frontend discovery only. It does not control whether the protocol is open, and it does not stop advanced users, SDK users, or custom frontends from targeting independent relayers directly.
+Official listing improves public frontend discovery only. It does not control whether the protocol is open, and it does not stop advanced users, SDK users, or custom frontend operators from targeting independent relayers directly.

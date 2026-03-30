@@ -1,0 +1,100 @@
+---
+title: "Using the App"
+description: "The Parly App is the primary user-facing surface for shielding, recovery, private execution, activity review, and selective verification. This page explains the product flow from first connection through payout proof."
+---
+
+- [Open App](https://parly.fi/app)
+- [Open Verify](https://parly.fi/verify)
+- [How Parly Works](/)
+
+## What the App is for
+
+The App is the main control surface for Parly users. It is where a user connects a wallet, authenticates private state, shields supported stablecoins, executes private payouts, reviews activity, prepares selective-disclosure records, and hands a disclosed lane to the Verify portal when proof is needed.
+
+Parly is intentionally designed so execution and review stay connected. Shielding, sending, history, receipts, and verification handoff belong to one coherent operator flow.
+
+## Connect and authenticate
+
+Parly does not treat wallet connection and private-state access as the same thing.
+
+Connecting a wallet gives the application an active address. Authenticating that wallet activates private-state recovery and execution by asking the wallet to sign a fixed authentication message. That message is used to derive the recovery identity used for private note recovery. It does not require private-key export.
+
+In practical terms, the flow is:
+
+1. Connect wallet
+2. Authenticate
+3. Recover private state
+4. Use Shield, Execute, Ledger, and Verify
+
+This separation matters because "connected" is not the same as "ready to recover private state."
+
+## Shield
+
+Shielding moves supported stablecoins into a private balance on Tempo.
+
+There are two shielding paths:
+
+- direct shielding on Tempo
+- spoke-origin shielding into Tempo
+
+Both paths are live. Spoke-origin shielding routes through the hub-and-spoke topology and later appears in history and provenance where that data is actually available.
+
+The Shield surface should guide the user through origin network selection, supported asset selection, amount entry, token approval where required, transaction confirmation, and confirmed private-balance entry.
+
+When shielding succeeds, the protocol emits the data required for future recovery and note reconstruction.
+
+## Execute
+
+The Execute surface is where a user spends from private balance.
+
+It supports:
+
+- single send
+- batch send
+- private same-network payouts on Tempo
+- private cross-network stablecoin-only payouts to supported spokes
+- private relay by default
+- self-relay fallback
+
+The interface must keep submitted, pending, confirmed, and failed visually distinct. Parly is designed to keep uncertain post-broadcast states honest instead of flattening everything into "success."
+
+That distinction is not cosmetic. It is part of trust.
+
+## Ledger and Compliance
+
+The App includes a Ledger and Compliance surface directly below the main execution console. This is where users review deposits, private executions, change-note activity, scoped payout records, and disclosure-preparation flows.
+
+The compliance model is selective by design. A user can review one payout scope at a time, export a lane-scoped record, and hand that record to a counterparty, auditor, or exchange without exposing the wider private execution set.
+
+This surface should be treated as:
+
+- a review surface
+- a receipt surface
+- a proof-preparation surface
+
+It is not a recovery console and not a general transaction explorer.
+
+## Scoped receipts
+
+A scoped receipt is a record for one disclosed payout lane.
+
+Depending on what is truthfully available, a scoped receipt may include confirmed settlement facts, the disclosed payout scope, local note relationship details where appropriate, and provenance details where the source and settlement path can be linked honestly.
+
+A scoped receipt is intentionally narrower than the full private execution. It is built for disclosure of one payment, not exposure of a full treasury graph.
+
+## Verification handoff
+
+When a scoped receipt is shared, the recipient can independently verify the disclosed payout lane using the Verify portal.
+
+The typical handoff is:
+
+- the confirmed Tempo transaction hash
+- the disclosed child key
+
+That verification flow is public, selective, and independent of the sender's app session.
+
+## What the App does not do
+
+The App is not a swap terminal, not a delayed execution console, and not a general-purpose chain-agnostic wallet. It is a private stablecoin execution console with deterministic recovery and selective verification.
+
+That clarity is one of the reasons the product feels professional instead of chaotic.

@@ -30,32 +30,17 @@
         "tab": "Docs",
         "groups": [
           {
-            "group": "Foundations",
+            "group": "Documentation",
             "pages": [
               "index",
               "quickstart",
-              "architecture-overview"
-            ]
-          },
-          {
-            "group": "Product",
-            "pages": [
-              "using-the-app",
-              "verify"
-            ]
-          },
-          {
-            "group": "Operators",
-            "pages": [
-              "run-a-relayer",
-              "relayer-registry"
-            ]
-          },
-          {
-            "group": "Developers",
-            "pages": [
+              "app",
+              "verify",
+              "relayers",
               "sdk",
-              "MCP-Server"
+              "mcp",
+              "relayer-registry",
+              "architecture"
             ]
           }
         ]
@@ -69,7 +54,7 @@
   "navbar": {
     "links": [
       {
-        "label": "Verify",
+        "label": "Open Verify",
         "href": "https://parly.fi/verify"
       },
       {

@@ -1,0 +1,53 @@
+---
+title: "Parly MCP Server"
+description: "Parly includes an MCP server for agentic workflows. It exposes bounded tools over agent-owned execution only and keeps agent, relayer, and treasury responsibilities separate."
+---
+
+- [View MCP Source](https://github.com/Parlyfi/parly-mcp)
+- [View SDK Source](https://github.com/Parlyfi/parly-sdk)
+- [How Parly Works](/)
+- [Run a Relayer](/relayers)
+
+## Security model
+
+The MCP server must run with an agent key only. It must not inherit relayer execution power, relayer sealed-box secrets, or treasury control.
+
+This is one of the most important safety boundaries in the Parly stack.
+
+## What the MCP server exposes
+
+The MCP server supports:
+
+- recover_largest_note
+- execute_shielded_payment
+
+When MPP compatibility is enabled, it may also support:
+
+- mpp_create_session
+- mpp_settle_session_payment
+
+## recover_largest_note
+
+This tool recovers the largest live note controlled by the configured agent key for a given asset. It is useful for agents that need to reason about current private spendable balance before attempting execution.
+
+## execute_shielded_payment
+
+This tool executes a private Parly payment from notes controlled by the configured agent key. It is the direct immediate execution path for agent workflows.
+
+## mpp_create_session
+
+This tool creates an MPP-compatible session descriptor around the current agent-owned execution path. It is useful when an agent or service wants a machine-readable spending lane without changing protocol law.
+
+## mpp_settle_session_payment
+
+This tool settles a Parly payment from a previously created session descriptor. It reuses the same execution engine rather than introducing a separate settlement protocol.
+
+## Runtime behavior
+
+When the MCP server starts, it should make the active key scope and adapter state explicit. That includes:
+
+- whether it is running with the agent key only
+- whether MPP compatibility is enabled
+- which service name and version are active when the adapter is used
+
+This visible boundary is good public runtime behavior because it makes the security model obvious instead of vague.

@@ -1,0 +1,137 @@
+---
+title: "Architecture Overview"
+description: "Parly is designed as a focused privacy execution stack rather than a single frontend with hidden assumptions. This page explains the core system components, how they relate to one another, and why the product is structured this way."
+---
+
+- [Open App](https://parly.fi/app)
+- [View Relayer Source](https://github.com/Parlyfi/parly-relayer)
+- [View SDK Source](https://github.com/Parlyfi/parly-sdk)
+- [View MCP Source](https://github.com/Parlyfi/parly-mcp)
+
+## High-level system design
+
+Parly uses a hub-and-spoke model with Tempo as the privacy hub.
+
+At a high level, the stack consists of:
+
+- the web application
+- on-chain contracts
+- zero-knowledge circuits
+- the relayer runtime
+- the indexer
+- the SDK
+- the MCP server
+- optional analytics infrastructure
+
+Each component has a specific role. The architecture is designed so that recovery logic, public indexing, relay execution, agent tooling, and analytics do not collapse into one trust domain.
+
+## Web application
+
+The web application is the user-facing product surface. It handles:
+
+- wallet connection
+- authentication
+- private-state recovery
+- shielding
+- execution
+- activity review
+- scoped receipts
+- verification handoff
+
+The web app is where protocol truth becomes usable. It is not itself the protocol's ultimate source of truth.
+
+## Contracts and circuits
+
+The contract layer holds the settlement logic for shielding, private execution, and hub/spoke routing. The circuit layer defines the proof system used for private execution and keeps the execution model bounded and predictable.
+
+Parly uses a fixed padded execution model at launch. That stability matters because frontend, relayer, SDK, and contract boundaries all need the same execution shape.
+
+## Relayer
+
+The relayer is the private execution daemon. It:
+
+- receives encrypted relay requests
+- decrypts only the requests addressed to it
+- validates and submits execution
+- tracks uncertain post-broadcast states
+- reconciles pending outcomes later
+
+Parly ships the relayer implementation directly. Independent operators run it through the public relayer distribution surface.
+
+## Indexer
+
+The indexer is the public data layer.
+
+It serves:
+
+- activity history
+- verification queries
+- provenance joins where available
+- analytics surfaces
+
+The indexer matters because selective disclosure needs a public fact layer that does not depend on loose inference.
+
+## SDK
+
+The SDK is the developer integration layer. It mirrors:
+
+- deterministic authentication
+- recovery identity derivation
+- note handling
+- execution flow construction
+- approval discipline
+- outcome handling
+
+This makes it suitable for operators, service integrations, and automation.
+
+## MCP server
+
+The MCP server is the bounded agent tooling layer.
+
+It allows:
+
+- note recovery
+- immediate private payment execution
+- session-shaped machine-payment flows through the MPP-compatible adapter when enabled
+
+It is intentionally separated from relayer and treasury power.
+
+## MPP compatibility
+
+Parly supports MPP compatibility only at the SDK and MCP boundary.
+
+That means:
+
+- Parly can fit into machine-payment workflows
+- the adapter can expose session-shaped developer and agent flows
+- the protocol core does not become an on-chain session-settlement system
+
+That boundary is deliberate. It is not an omission.
+
+## Repository and deployment posture
+
+Parly maintains one private canonical monorepo as the internal source of truth. Public code distribution is split by role into:
+
+- a public relayer repo for operators
+- a public SDK repo/package for developers
+- a public MCP repo for agent integrations
+
+A realistic production deployment is not frontend-only. Depending on the surface being operated, the broader stack may include the web app, relayer runtime, indexer, MCP server, and optional analytics services.
+
+That is why runtime separation, secret separation, and role-specific source distribution matter from day one.
+
+## Final recommended public docs navigation
+
+Use this public documentation structure:
+
+- `/docs`
+- `/docs/quickstart`
+- `/docs/app`
+- `/docs/verify`
+- `/docs/relayers`
+- `/sdk`
+- `/docs/mcp`
+- `/docs/relayer-registry`
+- `/docs/architecture`
+
+That is the fully updated hosted docs set for the current Parly launch surface.

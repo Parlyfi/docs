@@ -38,3 +38,17 @@ Use these as the public source surfaces:
 Use:
 - npm install @parly/sdk
 - pnpm add @parly/sdk
+
+
+## Source priority for public docs
+
+For the Mintlify public docs output, the primary source of truth is:
+
+- references/hosted-public-docs.md
+
+All other files in /references are secondary validation sources only.
+
+If references/hosted-public-docs.md conflicts with any other reference file, follow references/hosted-public-docs.md for public docs wording, page structure, CTAs, and scope.
+
+Do not synthesize a new public-docs truth from multiple sources.
+Do not “improve” the hosted docs by adding sections, claims, or product scope not present in references/hosted-public-docs.md unless explicitly asked.

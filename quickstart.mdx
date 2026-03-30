@@ -1,111 +1,96 @@
 ---
 title: "Start Here"
-description: "Choose the right Parly entry point for using the app, running a relayer, building with the SDK, or using MCP."
+description: "Use this page to choose the right entry point into Parly, whether you want to use the product directly, operate relay infrastructure, build on the SDK, or connect Parly into an agent workflow."
 ---
 
-Use this page to choose the right entry point into Parly. The public docs distinguish between user, operator, developer, and agent-builder journeys so you can start with the correct surface instead of the private monorepo.
-
-<CardGroup cols={2}>
-  <Card title="Open App" href="https://parly.fi/app">
-    Start with the live product if you want to shield, execute, review activity, or prepare a verified payout lane.
-  </Card>
-  <Card title="Run a Relayer" href="/run-a-relayer">
-    Start with the operator docs if you want to run private execution infrastructure.
-  </Card>
-  <Card title="View SDK Source" href="https://github.com/Parlyfi/parly-sdk">
-    Open the public SDK repo if you want to integrate Parly into a service or app.
-  </Card>
-  <Card title="View MCP Source" href="https://github.com/Parlyfi/parly-mcp">
-    Open the public MCP repo if you want bounded agent tooling and agent-owned execution.
-  </Card>
-</CardGroup>
+- [Open App](https://parly.fi/app)
+- [Run a Relayer](/relayers)
+- [View SDK Source](https://github.com/Parlyfi/parly-sdk)
+- [View MCP Source](https://github.com/Parlyfi/parly-mcp)
 
 ## I want to use Parly
 
-Start with the app.
+Start with the App.
 
-The app is the user-facing control surface for wallet connection, deterministic authentication, shielding, private execution, activity review, scoped receipts, and verification handoff.
+That is the user-facing control surface for wallet connection, authentication, shielding, private execution, activity review, selective receipts, and verification handoff. It is where product truth becomes usable.
 
-<CardGroup cols={2}>
-  <Card title="Open App" href="https://parly.fi/app">
-    Go straight to the live product.
-  </Card>
-  <Card title="Using the App" href="/using-the-app">
-    Read the user flow before you begin.
-  </Card>
-</CardGroup>
+From the App, a user can connect a wallet, authenticate private state, shield supported stablecoins, execute private payouts, review history, and prepare a disclosed payout lane for independent verification.
+
+**CTA**
+
+- [Open App](https://parly.fi/app)
+- [Using the App](/app)
 
 ## I want to run a relayer
 
 Start with the relayer docs and the public relayer source.
 
-Parly ships a real relayer runtime. Operators do not need to invent a private-execution daemon from scratch. The shipped runtime covers key generation, encrypted bundle handling, execution validation, submission, and pending-state reconciliation.
+Parly ships a full relayer runtime, not just a vague relay concept. Operators do not need to invent their own private-execution daemon from zero before participating. The shipped relayer covers key generation, encrypted bundle handling, execution validation, submission, and pending-state reconciliation.
 
-<CardGroup cols={2}>
-  <Card title="Run a Relayer" href="/run-a-relayer">
-    Read the operator flow and production requirements.
-  </Card>
-  <Card title="View Relayer Source" href="https://github.com/Parlyfi/parly-relayer">
-    Open the public relayer repo.
-  </Card>
-  <Card title="Operator Quickstart" href="https://github.com/Parlyfi/parly-relayer">
-    Use the public operator distribution surface.
-  </Card>
-  <Card title="Relayer Registration" href="https://parly.fi/relayer">
-    Register for official frontend discovery if you want it.
-  </Card>
-</CardGroup>
+This is the right path if you want to operate private execution infrastructure.
+
+**CTA**
+
+- [Run a Relayer](/relayers)
+- [View Relayer Source](https://github.com/Parlyfi/parly-relayer)
+- [Operator Quickstart](https://github.com/Parlyfi/parly-relayer)
+- [Relayer Registration](https://parly.fi/relayer)
 
 ## I want to integrate Parly in code
 
 Start with the SDK.
 
-The SDK mirrors the live recovery and execution model. It handles deterministic authentication, recovery identity derivation, note handling, exact approval flow, and outcome handling without pretending the protocol is simpler than it is.
+The SDK is the developer integration surface for deterministic authentication, recovery identity derivation, note handling, execution request construction, exact approval discipline, and outcome handling. It mirrors the live protocol model instead of pretending the protocol is simpler than it really is.
 
-<CardGroup cols={2}>
-  <Card title="Parly SDK" href="/sdk">
-    Read the public SDK guide.
-  </Card>
-  <Card title="View SDK Source" href="https://github.com/Parlyfi/parly-sdk">
-    Open the public source repo.
-  </Card>
-</CardGroup>
+This is the correct entry point for backend services, automation, service operators, and integrations that want protocol-accurate behavior.
+
+**CTA**
+
+- [View SDK Source](https://github.com/Parlyfi/parly-sdk)
+- [Parly SDK](/sdk)
+- [Architecture Overview](/architecture)
 
 ## I want to build an agent workflow
 
 Start with the MCP docs.
 
-The MCP server exposes bounded tools over agent-owned execution only. It keeps agent keys separate from relayer and treasury authority, and it supports MPP-compatible wrapping without changing protocol law.
+The MCP server exists for bounded agent workflows. It exposes agent-owned tools, keeps agent keys separate from relayer and treasury power, and supports MPP-compatible wrapping where needed without changing the core protocol law.
 
-<CardGroup cols={2}>
-  <Card title="Parly MCP Server" href="/mcp">
-    Read the MCP guide.
-  </Card>
-  <Card title="View MCP Source" href="https://github.com/Parlyfi/parly-mcp">
-    Open the public source repo.
-  </Card>
-</CardGroup>
+This is the right path for copilots, service agents, and headless automation.
+
+**CTA**
+
+- [View MCP Source](https://github.com/Parlyfi/parly-mcp)
+- [Parly MCP Server](/mcp)
+- [View SDK Source](https://github.com/Parlyfi/parly-sdk)
 
 ## I want to understand the system before using it
 
-Start with **How Parly Works** and **Architecture Overview**.
+Start with How Parly Works and Architecture Overview.
 
-Those pages explain the launch surface, recovery model, selective verification, relay model, registry boundary, SDK and MCP boundary, and the parts that are intentionally excluded from V16.9.9.
+Those pages explain the launch surface, recovery model, selective verification, relay model, SDK/MCP boundary, and the parts that are intentionally excluded.
 
-<CardGroup cols={2}>
-  <Card title="How Parly Works" href="/">
-    Read the public product narrative.
-  </Card>
-  <Card title="Architecture Overview" href="/architecture-overview">
-    Read the system-level model and trust boundaries.
-  </Card>
-</CardGroup>
+**CTA**
+
+- [How Parly Works](/)
+- [Architecture Overview](/architecture)
 
 ## Public surfaces
 
-- App: the main execution surface for shielding, recovery, private execution, activity review, and verification handoff
-- Verify: the public verification surface for one disclosed payout lane
-- Relayer: the operator runtime for private execution
-- Registry: the official discovery surface for relayer listing in the public app
-- SDK: the public developer integration layer
-- MCP Server: the public agent tooling layer
+**App**
+The main execution surface for shielding, recovery, private execution, activity review, selective disclosure, and verification handoff.
+
+**Verify**
+The public verification surface for one disclosed payout lane.
+
+**Relayer**
+The operator runtime for private execution.
+
+**Registry**
+The official discovery surface for relayer listing in the public app.
+
+**SDK**
+The developer integration layer.
+
+**MCP Server**
+The agent tooling layer.

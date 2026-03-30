@@ -1,28 +1,16 @@
 ---
 title: "Parly SDK"
-description: "Use the public SDK to integrate Parly's live recovery and private execution model into services, apps, and automation."
+description: "The SDK is the developer integration layer for Parly. It mirrors the live recovery and execution model so services, automation systems, operators, and machine-payment environments can integrate the protocol without re-implementing its core client logic."
 ---
 
-The SDK is the developer integration layer for Parly. It mirrors the live recovery and execution model so services, automation systems, operators, and machine-payment environments can integrate the protocol without re-implementing its core client logic.
-
-<CardGroup cols={2}>
-  <Card title="View SDK Source" href="https://github.com/Parlyfi/parly-sdk">
-    Open the public SDK repo.
-  </Card>
-  <Card title="View MCP Source" href="https://github.com/Parlyfi/parly-mcp">
-    See the public MCP distribution.
-  </Card>
-  <Card title="How Parly Works" href="/">
-    Review the protocol boundaries the SDK must preserve.
-  </Card>
-  <Card title="Run a Relayer" href="/run-a-relayer">
-    See the operator runtime that works beside the SDK surface.
-  </Card>
-</CardGroup>
+- [View SDK Source](https://github.com/Parlyfi/parly-sdk)
+- [View MCP Source](https://github.com/Parlyfi/parly-mcp)
+- [How Parly Works](/)
+- [Run a Relayer](/relayers)
 
 ## What the SDK is
 
-The SDK exists so you can use Parly without rebuilding deterministic authentication, recovery identity derivation, note-envelope handling, note reconstruction, execution request construction, exact approval logic, and outcome handling from scratch.
+The SDK exists so developers can use Parly without rebuilding deterministic authentication, recovery identity derivation, note-envelope handling, note reconstruction, execution request construction, exact approval logic, and outcome handling from scratch.
 
 It is not a fake abstraction layer. It preserves protocol reality while making integration practical.
 
@@ -42,68 +30,74 @@ The SDK includes support for:
 
 ```bash
 npm install @parly/sdk
-```
-
-```bash
 pnpm add @parly/sdk
 ```
 
 ## Initialize the SDK
 
-Create the SDK with an agent-owned execution key, Tempo RPC URL, and Tempo chain ID.
-
 ```ts
-import { ParlySDK, ParlyMppAdapter } from "@parly/sdk";
+import { ParlySDK, ParlyMppAdapter } from "@parly/sdk"
 
 const sdk = new ParlySDK({
   privateKeyHex: process.env.AGENT_PRIVATE_KEY as `0x${string}`,
   tempoChainId: Number(process.env.TEMPO_CHAIN_ID),
   tempoRpcUrl: process.env.TEMPO_RPC_URL!
-});
+})
 
 const mpp = new ParlyMppAdapter(sdk, {
   serviceName: process.env.MPP_SERVICE_NAME,
   serviceVersion: process.env.MPP_SERVICE_VERSION
-});
+})
 ```
 
-This is the intended initialization shape for service-side integrations and agent workflows.
+This is the intended initialization shape for service-side integrations and agent workflows. It matches the live SDK and MCP boundary model.
 
-## Example flows
+## What the SDK handles
 
-The public SDK surface is built for:
+The SDK handles deterministic auth-message usage, recovery key derivation, note-envelope handling, note reconstruction, direct execution path construction, exact approval flow, and outcome handling.
 
-- basic shielded payment flows
-- agent or app integrations
-- explicit error handling
-- MPP-compatible wrapping at the SDK boundary only
+That is why the SDK should be treated as a real integration surface and not just a sample package.
 
-See the public repo for runnable examples and source-level release validation.
+## MPP-compatible integration
+
+Parly supports MPP compatibility through an adapter that wraps the existing execution engine.
+
+Create a session:
+
+```ts
+const session = await mpp.createSession({
+  sessionId: "invoice-2026-03-27",
+  counterparty: "0x1111111111111111111111111111111111111111",
+  assetId: 1,
+  spendLimit: "25.0",
+  destinationEid: Number(process.env.TEMPO_LZ_EID),
+  poolAddress: process.env.NEXT_PUBLIC_USDC_POOL as `0x${string}`
+})
+```
+
+Settle from a session:
+
+```ts
+const outcome = await mpp.settleFromSession(
+  {
+    sessionId: session.sessionId,
+    destination: "0x1111111111111111111111111111111111111111",
+    amount: "25.0"
+  },
+  session
+)
+```
+
+This adapter does not alter pool logic, circuit semantics, or contract-level settlement rules. It creates a developer-friendly session layer above the same privacy engine.
 
 ## What the SDK does not do
 
 The SDK does not:
 
-- change pool behavior
+- turn Parly into a different settlement protocol
 - add on-chain session state
-- bypass deterministic recovery
+- bypass the recovery model
 - hide exact approval handling
 - blur the line between submitted, pending, and confirmed
 
 Its job is to preserve protocol correctness while making integration easier.
-
-## Security and compatibility
-
-- keep `AGENT` keys separate from `RELAYER` keys
-- do not run the SDK with server-only secrets in an untrusted browser context
-- MPP compatibility stays at the SDK and MCP boundary only
-- `@parly/sdk@16.9.9` targets Parly core `16.9.9`
-- the public SDK is compatible with MCP release `16.9.9-mcp.0`
-
-## Current limitations
-
-- no scheduling
-- no swaps
-- no passkeys in privacy mode
-
-You can run `pnpm smoke:standalone` in the public source repo to verify install, typecheck, build, tests, and publish dry-run behavior.
