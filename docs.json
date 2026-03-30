@@ -9,6 +9,22 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "View Relayer Source",
+          "href": "https://github.com/Parlyfi/parly-relayer"
+        },
+        {
+          "anchor": "View SDK Source",
+          "href": "https://github.com/Parlyfi/parly-sdk"
+        },
+        {
+          "anchor": "View MCP Source",
+          "href": "https://github.com/Parlyfi/parly-mcp"
+        }
+      ]
+    },
     "tabs": [
       {
         "tab": "Docs",
@@ -39,28 +55,12 @@
             "group": "Developers",
             "pages": [
               "sdk",
-              "mcp"
+              "MCP-Server"
             ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "View Relayer Source",
-          "href": "https://github.com/Parlyfi/parly-relayer"
-        },
-        {
-          "anchor": "View SDK Source",
-          "href": "https://github.com/Parlyfi/parly-sdk"
-        },
-        {
-          "anchor": "View MCP Source",
-          "href": "https://github.com/Parlyfi/parly-mcp"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",
