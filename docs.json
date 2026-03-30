@@ -4,8 +4,8 @@
   "name": "Parly Docs",
   "colors": {
     "primary": "#A7fd98",
-    "light": "#A7fd98",
-    "dark": "#A7fd98"
+    "light": "#FFFFFF",
+    "dark": "#111C1E"
   },
   "favicon": "/images/parly-logo-Copy-Copy.png",
   "navigation": {
