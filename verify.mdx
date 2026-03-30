@@ -1,0 +1,82 @@
+---
+title: "Verify a Payout"
+description: "Use Parly Verify to confirm one disclosed payout lane from a real Parly execution."
+---
+
+Parly Verify lets a counterparty, auditor, exchange, finance reviewer, or compliance reviewer confirm one disclosed payout lane from a real Parly execution by using a confirmed Tempo transaction hash and a child key.
+
+<CardGroup cols={2}>
+  <Card title="Open Verify" href="https://parly.fi/verify">
+    Open the public verification portal.
+  </Card>
+  <Card title="Using the App" href="/using-the-app">
+    See how a scoped receipt is prepared before verification.
+  </Card>
+  <Card title="How Parly Works" href="/">
+    Review the selective-disclosure model.
+  </Card>
+  <Card title="Start Here" href="/quickstart">
+    Choose the correct public surface for your role.
+  </Card>
+</CardGroup>
+
+## What Verify does
+
+Verify is the public selective-disclosure surface for Parly. It answers one narrow question well:
+
+Does this disclosed child key correspond to a real payout lane in the referenced Parly execution?
+
+That keeps proof useful for real operations without exposing the wider private execution set.
+
+## What you need
+
+To use Verify, you need:
+
+- the confirmed Tempo transaction hash
+- the disclosed child key
+
+The payer usually shares these values in a scoped receipt or through a direct proof handoff.
+
+## What Verify can return
+
+Depending on the available indexed and scoped data, Verify may display:
+
+- settlement confirmation
+- payout recipient
+- payout amount
+- destination chain or route
+- provenance details where truthfully available
+
+The purpose is not to reveal everything. The purpose is to prove the disclosed lane cleanly and independently.
+
+## What Verify does not do
+
+Verify does not:
+
+- reveal the full private execution set
+- expose unrelated payout lanes
+- reconstruct treasury behavior
+- assign shared route economics to one disclosed lane
+- replace a full internal audit system
+
+Selective verification only works if the proof surface stays selective.
+
+## Typical verification flow
+
+1. Receive the confirmed Tempo transaction hash.
+2. Receive the disclosed child key.
+3. Open Verify.
+4. Enter both values.
+5. Review the matched payout result.
+
+If the values match a real disclosed lane, Verify confirms it. If they do not, the result should fail clearly.
+
+## Who Verify is for
+
+Verify is for:
+
+- counterparties verifying a payment
+- exchanges checking a claimed receipt
+- auditors reviewing one specific lane
+- finance teams reviewing one disclosed payout
+- compliance teams checking one scoped record

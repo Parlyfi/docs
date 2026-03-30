@@ -1,97 +1,83 @@
 ---
-title: "Introduction"
-description: "Welcome to the new home for your documentation"
+title: "How Parly Works"
+description: "Understand Parly's exact V16.9.9 launch surface, trust model, and public product boundaries."
 ---
 
-## Setting up
+Parly is a privacy execution system for stablecoin movement across supported networks. It is built for people, teams, operators, developers, and machine-driven workflows that need private execution, deterministic recovery, and selective proof without turning the product into a scheduler, swap terminal, or protocol-owned relay monopoly.
 
-Get your documentation site up and running in minutes.
-
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Follow our three step quickstart guide.
-</Card>
-
-## Make it yours
-
-Design a docs site that looks great and empowers your users.
-
-<Columns cols={2}>
-  <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
-  >
-    Edit your docs locally and preview them in real time.
+<CardGroup cols={2}>
+  <Card title="Open App" href="https://parly.fi/app">
+    Open the primary Parly control surface for shielding, execution, review, and verification handoff.
   </Card>
-  <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
-  >
-    Customize the design and colors of your site to match your brand.
+  <Card title="Architecture Overview" href="/architecture-overview">
+    See how the web app, contracts, relayer, indexer, SDK, and MCP server fit together.
   </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
+  <Card title="Start Here" href="/quickstart">
+    Choose the right path if you want to use the app, run a relayer, build with the SDK, or use MCP.
   </Card>
-  <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
-  >
-    Auto-generate API documentation from OpenAPI specifications.
+  <Card title="Run a Relayer" href="/run-a-relayer">
+    Learn the operator flow, runtime requirements, and official discovery model.
   </Card>
-</Columns>
+</CardGroup>
 
-## Create beautiful pages
+> Launch law: V16.9.9 supports shield on Tempo, shield from supported spokes into Tempo, private same-chain payouts on Tempo, private cross-chain stablecoin-only payouts from Tempo to supported spokes, third-party private relay over Waku, self-relay fallback, Verify, the public SDK, the MCP server, and MPP-compatible integration only at the SDK/MCP boundary.
 
-Everything you need to create world-class documentation.
+## What Parly does
 
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
-  </Card>
-  <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
-  >
-    Add sample code to demonstrate how to use your product.
-  </Card>
-  <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
-  >
-    Display images and other media.
-  </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
+Parly lets you shield supported stablecoins into private balance on Tempo, execute private payouts on Tempo, and send private stablecoin payouts from Tempo to supported spoke networks. The live public surface also includes Waku-based private relay, self-relay fallback, selective verification, a public SDK, and an MCP server for agent workflows.
 
-## Need inspiration?
+At launch, the supported assets are `USDC` and `USDT`. The supported spokes are Ethereum, Arbitrum, Base, and BSC. Tempo is the privacy hub.
 
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
-</Card>
+## What Parly does not do
+
+Parly does not launch with:
+
+- scheduling
+- delayed execution
+- intent vaults
+- REST intent APIs
+- swap routing or `1inch`
+- volatile-token payout paths
+- passkey privacy mode
+- dual identity planes
+- on-chain MPP session state
+- transient note chaining
+- multi-proof chaining from one active note
+- a protocol-operated monopoly relayer
+- plaintext local note storage as a recovery dependency
+- custom spoke withdrawal receivers
+
+Parly is a privacy settlement layer. It is not a trading interface, a workflow engine, or a catch-all DeFi dashboard.
+
+## Privacy and recovery
+
+Parly does not treat browser storage as the recovery authority. Recovery stays anchored to wallet-derived deterministic identity plus on-chain note envelopes, leaves, and nullifiers. Browser storage can improve convenience, but it is not the source of truth.
+
+This is why Parly can support future-device recovery without turning private state into device-bound state.
+
+## Verification and selective disclosure
+
+Parly includes a public Verify surface for selective disclosure. You can disclose one payout lane with a confirmed Tempo transaction hash and a child key, then let a counterparty, auditor, exchange, or finance reviewer confirm that one lane without exposing the rest of your private execution set.
+
+Verify is intentionally narrow. It is not a treasury explorer, batch accounting console, or broad audit backdoor.
+
+## Network model
+
+Parly uses a hub-and-spoke model:
+
+- Hub: Tempo
+- Supported spokes: Ethereum, Arbitrum, Base, BSC
+- Assets: `USDC`, `USDT`
+- Launch execution shape: single send or batch send up to `10` outputs per proof
+
+This keeps privacy state, recovery logic, and verification centered instead of fragmented across unrelated chains.
+
+## Developer and agent integrations
+
+Parly ships a public SDK for service-side integrations and a public MCP server for bounded agent workflows. MPP compatibility exists only as an adapter at the SDK and MCP boundary. It does not change pool behavior, contract law, or circuit semantics.
+
+The public source distribution is split by role:
+
+- relayer operators use [`parly-relayer`](https://github.com/Parlyfi/parly-relayer)
+- developers use [`parly-sdk`](https://github.com/Parlyfi/parly-sdk)
+- agent builders use [`parly-mcp`](https://github.com/Parlyfi/parly-mcp)

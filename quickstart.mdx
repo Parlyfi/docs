@@ -1,80 +1,111 @@
 ---
-title: "Quickstart"
-description: "Start building awesome documentation in minutes"
+title: "Start Here"
+description: "Choose the right Parly entry point for using the app, running a relayer, building with the SDK, or using MCP."
 ---
 
-## Get started in three steps
-
-Get your documentation site running locally and make your first customization.
-
-### Step 1: Set up your local environment
-
-<AccordionGroup>
-  <Accordion icon="copy" title="Clone your docs locally">
-    During the onboarding process, you created a GitHub repository with your docs content if you didn't already have one. You can find a link to this repository in your [dashboard](https://dashboard.mintlify.com).
-    
-    To clone the repository locally so that you can make and preview changes to your docs, follow the [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) guide in the GitHub docs.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Start the preview server">
-    1. Install the Mintlify CLI: `npm i -g mint`
-    2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs live!
-    
-    <Tip>Your preview updates automatically as you edit files.</Tip>
-  </Accordion>
-</AccordionGroup>
-
-### Step 2: Deploy your changes
-
-<AccordionGroup>
-  <Accordion icon="github" title="Install our GitHub app">
-    Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
-    
-    Our GitHub app automatically deploys your changes to your docs site, so you don't need to manage deployments yourself.
-</Accordion>
-<Accordion icon="palette" title="Update your site name and colors">
-    For a first change, let's update the name and colors of your docs site.
-
-    1. Open `docs.json` in your editor.
-    2. Change the `"name"` field to your project name.
-    3. Update the `"colors"` to match your brand.
-    4. Save and see your changes instantly at `http://localhost:3000`.
-
-    <Tip>Try changing the primary color to see an immediate difference!</Tip>
-  </Accordion>
-</AccordionGroup>
-
-### Step 3: Go live
-
-<Accordion icon="rocket" title="Publish your docs">
-  1. Commit and push your changes.
-  2. Your docs will update and be live in moments!
-</Accordion>
-
-## Next steps
-
-Now that you have your docs running, explore these key features:
+Use this page to choose the right entry point into Parly. The public docs distinguish between user, operator, developer, and agent-builder journeys so you can start with the correct surface instead of the private monorepo.
 
 <CardGroup cols={2}>
-
-<Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
-  Learn MDX syntax and start writing your documentation.
-</Card>
-
-<Card title="Customize style" icon="palette" href="/essentials/settings">
-  Make your docs match your brand perfectly.
-</Card>
-
-<Card title="Add code examples" icon="square-code" href="/essentials/code">
-  Include syntax-highlighted code blocks.
-</Card>
-
-<Card title="API documentation" icon="code" href="/api-reference/introduction">
-  Auto-generate API docs from OpenAPI specs.
-</Card>
-
+  <Card title="Open App" href="https://parly.fi/app">
+    Start with the live product if you want to shield, execute, review activity, or prepare a verified payout lane.
+  </Card>
+  <Card title="Run a Relayer" href="/run-a-relayer">
+    Start with the operator docs if you want to run private execution infrastructure.
+  </Card>
+  <Card title="View SDK Source" href="https://github.com/Parlyfi/parly-sdk">
+    Open the public SDK repo if you want to integrate Parly into a service or app.
+  </Card>
+  <Card title="View MCP Source" href="https://github.com/Parlyfi/parly-mcp">
+    Open the public MCP repo if you want bounded agent tooling and agent-owned execution.
+  </Card>
 </CardGroup>
 
-<Note>
-  **Need help?** See our [full documentation](https://mintlify.com/docs) or join our [community](https://mintlify.com/community).
-</Note>
+## I want to use Parly
+
+Start with the app.
+
+The app is the user-facing control surface for wallet connection, deterministic authentication, shielding, private execution, activity review, scoped receipts, and verification handoff.
+
+<CardGroup cols={2}>
+  <Card title="Open App" href="https://parly.fi/app">
+    Go straight to the live product.
+  </Card>
+  <Card title="Using the App" href="/using-the-app">
+    Read the user flow before you begin.
+  </Card>
+</CardGroup>
+
+## I want to run a relayer
+
+Start with the relayer docs and the public relayer source.
+
+Parly ships a real relayer runtime. Operators do not need to invent a private-execution daemon from scratch. The shipped runtime covers key generation, encrypted bundle handling, execution validation, submission, and pending-state reconciliation.
+
+<CardGroup cols={2}>
+  <Card title="Run a Relayer" href="/run-a-relayer">
+    Read the operator flow and production requirements.
+  </Card>
+  <Card title="View Relayer Source" href="https://github.com/Parlyfi/parly-relayer">
+    Open the public relayer repo.
+  </Card>
+  <Card title="Operator Quickstart" href="https://github.com/Parlyfi/parly-relayer">
+    Use the public operator distribution surface.
+  </Card>
+  <Card title="Relayer Registration" href="https://parly.fi/relayer">
+    Register for official frontend discovery if you want it.
+  </Card>
+</CardGroup>
+
+## I want to integrate Parly in code
+
+Start with the SDK.
+
+The SDK mirrors the live recovery and execution model. It handles deterministic authentication, recovery identity derivation, note handling, exact approval flow, and outcome handling without pretending the protocol is simpler than it is.
+
+<CardGroup cols={2}>
+  <Card title="Parly SDK" href="/sdk">
+    Read the public SDK guide.
+  </Card>
+  <Card title="View SDK Source" href="https://github.com/Parlyfi/parly-sdk">
+    Open the public source repo.
+  </Card>
+</CardGroup>
+
+## I want to build an agent workflow
+
+Start with the MCP docs.
+
+The MCP server exposes bounded tools over agent-owned execution only. It keeps agent keys separate from relayer and treasury authority, and it supports MPP-compatible wrapping without changing protocol law.
+
+<CardGroup cols={2}>
+  <Card title="Parly MCP Server" href="/mcp">
+    Read the MCP guide.
+  </Card>
+  <Card title="View MCP Source" href="https://github.com/Parlyfi/parly-mcp">
+    Open the public source repo.
+  </Card>
+</CardGroup>
+
+## I want to understand the system before using it
+
+Start with **How Parly Works** and **Architecture Overview**.
+
+Those pages explain the launch surface, recovery model, selective verification, relay model, registry boundary, SDK and MCP boundary, and the parts that are intentionally excluded from V16.9.9.
+
+<CardGroup cols={2}>
+  <Card title="How Parly Works" href="/">
+    Read the public product narrative.
+  </Card>
+  <Card title="Architecture Overview" href="/architecture-overview">
+    Read the system-level model and trust boundaries.
+  </Card>
+</CardGroup>
+
+## Public surfaces
+
+- App: the main execution surface for shielding, recovery, private execution, activity review, and verification handoff
+- Verify: the public verification surface for one disclosed payout lane
+- Relayer: the operator runtime for private execution
+- Registry: the official discovery surface for relayer listing in the public app
+- SDK: the public developer integration layer
+- MCP Server: the public agent tooling layer

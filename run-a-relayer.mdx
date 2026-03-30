@@ -1,0 +1,114 @@
+---
+title: "Run a Parly Relayer"
+description: "Understand the relayer runtime, operator responsibilities, quickstart, and official discovery model."
+---
+
+Parly ships a full relayer runtime as part of the standard product stack. This page explains what a relayer does, what you are responsible for as an operator, how to get the source, and how to run the runtime in production.
+
+<CardGroup cols={2}>
+  <Card title="Relayer Registration" href="https://parly.fi/relayer">
+    Register for official frontend discovery if you want it.
+  </Card>
+  <Card title="View Relayer Source" href="https://github.com/Parlyfi/parly-relayer">
+    Open the public relayer repo.
+  </Card>
+  <Card title="Operator Quickstart" href="https://github.com/Parlyfi/parly-relayer">
+    Use the public operator distribution surface.
+  </Card>
+  <Card title="Relayer Registry" href="/relayer-registry">
+    Learn how official discovery works.
+  </Card>
+</CardGroup>
+
+## What a relayer is
+
+A Parly relayer receives encrypted private execution requests, decrypts only the requests addressed to it, validates whether they are safe and economically executable, submits valid executions, and keeps uncertain outcomes honest until they are resolved.
+
+A relayer is not:
+
+- a treasury controller
+- a protocol owner
+- a rewrite of settlement law
+- the protocol itself
+
+It is an operator runtime for private execution.
+
+## What Parly already ships
+
+Parly already ships a real relayer application. Independent operators do not need to invent private relay architecture from scratch. The shipped runtime includes:
+
+- the relayer service
+- key generation flow
+- encrypted bundle handling
+- execution validation and submission
+- pending-state reconciliation
+
+## Source and distribution
+
+The correct starting point for operators is the public relayer repo: [Parly relayer source](https://github.com/Parlyfi/parly-relayer).
+
+Operators should:
+
+1. open the public relayer source
+2. follow the operator quickstart
+3. configure the relayer environment
+4. run the relayer runtime
+5. run the pending reconciler beside it
+6. register through the relayer registry if they want official frontend discovery
+
+You do not need the private canonical monorepo to run a relayer.
+
+## Operator quickstart
+
+Use the public distribution flow:
+
+```bash
+cp .env.example .env
+pnpm install
+pnpm keygen:box
+pnpm start
+pnpm reconcile:pending:loop
+```
+
+After cloning, run `pnpm smoke:standalone` to verify install, typecheck, build, environment validation, and key generation in one pass.
+
+## Required configuration
+
+At minimum, a relayer operator needs:
+
+- the relayer execution private key
+- the relayer sealed-box private key
+- Waku connection values
+- a Tempo RPC endpoint
+- profitability and retry settings
+- pending reconciliation file paths
+
+Keep relayer execution keys, relayer sealed-box keys, agent keys, and treasury keys separate.
+
+## Official discovery and listing
+
+The official relayer registry exists for two purposes:
+
+- official frontend discovery
+- relayer public-key distribution for bundle encryption
+
+Listing does not permission the protocol. You can operate independently without official listing, but listing makes the relayer visible to the public app.
+
+## Reliability expectations
+
+A production relayer operator should:
+
+- keep the relayer online
+- keep the pending reconciler online
+- preserve honest pending state when results are uncertain
+- maintain secure key custody
+- keep successful activity flowing back into registry state if official listing is enabled
+
+A stale or inactive relayer may fall out of official discovery, but the protocol itself remains open.
+
+## Security notes
+
+- never commit `.env`
+- never publish relayer private keys
+- keep `AGENT` and `RELAYER` keys separate
+- official registry listing does not create protocol exclusivity

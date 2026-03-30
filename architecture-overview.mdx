@@ -1,0 +1,137 @@
+---
+title: "Architecture Overview"
+description: "See how Parly's web app, contracts, relayer, indexer, SDK, MCP server, and optional analytics surfaces fit together."
+---
+
+Parly is designed as a focused privacy execution stack rather than a single frontend with hidden assumptions. This page explains the core system components, how they relate to one another, and why the product is structured this way.
+
+<CardGroup cols={2}>
+  <Card title="Open App" href="https://parly.fi/app">
+    Open the primary user-facing product surface.
+  </Card>
+  <Card title="View Relayer Source" href="https://github.com/Parlyfi/parly-relayer">
+    Open the public operator distribution surface.
+  </Card>
+  <Card title="View SDK Source" href="https://github.com/Parlyfi/parly-sdk">
+    Open the public developer distribution surface.
+  </Card>
+  <Card title="View MCP Source" href="https://github.com/Parlyfi/parly-mcp">
+    Open the public agent distribution surface.
+  </Card>
+</CardGroup>
+
+## High-level system design
+
+Parly uses a hub-and-spoke model with Tempo as the privacy hub.
+
+At a high level, the stack consists of:
+
+- the web application
+- on-chain contracts
+- zero-knowledge circuits
+- the relayer runtime
+- the indexer
+- the SDK
+- the MCP server
+- optional analytics infrastructure
+
+Each component has a specific role. The architecture is designed so recovery logic, public indexing, relay execution, agent tooling, and analytics do not collapse into one trust domain.
+
+## Web application
+
+The web application is the user-facing product surface. It handles:
+
+- wallet connection
+- authentication
+- private-state recovery
+- shielding
+- execution
+- activity review
+- scoped receipts
+- verification handoff
+
+The web app is where protocol truth becomes usable. It is not the protocol's ultimate source of truth.
+
+## Contracts and circuits
+
+The contract layer holds settlement logic for shielding, private execution, and hub-and-spoke routing. The circuit layer defines the proof system used for private execution and keeps the execution model bounded and predictable.
+
+The launch execution model is fixed at single send or batch send up to `10` outputs per proof. That stability matters because frontend, relayer, SDK, and contract boundaries all depend on the same execution shape.
+
+## Relayer
+
+The relayer is the private execution daemon. It:
+
+- receives encrypted relay requests
+- decrypts only the requests addressed to it
+- validates and submits execution
+- tracks uncertain post-broadcast states
+- reconciles pending outcomes later
+
+Parly ships the relayer implementation directly. Independent operators run it from the public relayer distribution surface.
+
+## Indexer and public fact layer
+
+The indexer is the public fact layer for:
+
+- activity history
+- Verify queries
+- provenance joins where available
+- analytics surfaces
+
+Ponder turns raw chain events into structured product truth. Provenance should only be shown when the source dispatch and Tempo settlement can be joined deterministically.
+
+## SDK
+
+The SDK is the developer integration layer. It mirrors:
+
+- deterministic authentication
+- recovery identity derivation
+- note handling
+- execution flow construction
+- approval discipline
+- outcome handling
+
+This makes it suitable for operators, service integrations, and automation.
+
+## MCP server
+
+The MCP server is the bounded agent tooling layer. It exposes agent-owned tools only and routes real work through the SDK instead of creating a separate settlement law.
+
+The key boundary matters:
+
+- MCP uses `AGENT` keys
+- relayers use `RELAYER` keys
+- treasury control stays separate
+
+## Optional analytics infrastructure
+
+Parly may expose off-chain removable shield-mining analytics where enabled. Phase 2 systems sit above protocol truth. They are not protocol law and they must remain removable without breaking core settlement, recovery, or verification behavior.
+
+## Why the boundaries matter
+
+Parly is infrastructure, not just a frontend. A real deployment may include:
+
+- contracts
+- web app
+- relayer
+- pending reconciler
+- indexer
+- Verify
+- registry routes
+- SDK
+- MCP server
+- app-owned relational state where needed
+- optional analytics services
+
+That is why the public docs distinguish clearly between the user journey, operator journey, developer journey, and agent-builder journey.
+
+## Public distribution model
+
+Parly keeps one private canonical monorepo internally, but the public distribution surfaces are split by role:
+
+- relayer operators use [`parly-relayer`](https://github.com/Parlyfi/parly-relayer)
+- developers use [`parly-sdk`](https://github.com/Parlyfi/parly-sdk)
+- agent builders use [`parly-mcp`](https://github.com/Parlyfi/parly-mcp)
+
+Those public repos are distribution layers. They are not alternate sources of truth.

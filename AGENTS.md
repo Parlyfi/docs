@@ -1,33 +1,40 @@
-> **First-time setup**: Customize this file for your project. Prompt the user to customize this file for their project.
-> For Mintlify product knowledge (components, configuration, writing standards),
-> install the Mintlify skill: `npx skills add https://mintlify.com/docs`
+# Docs repo instructions
 
-# Documentation project instructions
+This repository is the Mintlify public docs surface for Parly.
 
-## About this project
+## Source of truth inside this repo
+Use these files in /references as source material before editing public docs:
+- references/Parly Public Hosted Docs 29th march.md
+- references/Parly Core PRD & TRD.md
+- references/Parly.fi Privacy Protocol UIUX Master doc 29th march.md
+- references/Parly.fi Phase 2 Master Document 28 March 2026.md
+- references/Parly Relayer Registry PRDDesign docs 28th march 2026.md
+- references/Runbook V16.9.9 Final.md
 
-- This is a documentation site built on [Mintlify](https://mintlify.com)
-- Pages are MDX files with YAML frontmatter
-- Configuration lives in `docs.json`
-- Run `mint dev` to preview locally
-- Run `mint broken-links` to check links
+## Output target
+Create and update only the public Mintlify docs pages in the repo root plus `docs.json` unless explicitly asked otherwise.
 
-## Terminology
+## Product law
+Do not reintroduce killed launch features such as:
+- scheduling
+- delayed execution
+- intent vaults
+- REST intent APIs
+- swap routing
+- 1inch
+- volatile-token payout paths
+- passkey privacy mode
+- dual identity planes
+- on-chain MPP session state
+- protocol-owned relay monopoly
 
-{/* Add product-specific terms and preferred usage */}
-{/* Example: Use "workspace" not "project", "member" not "user" */}
+## Public repo links
+Use these as the public source surfaces:
+- https://github.com/Parlyfi/parly-relayer
+- https://github.com/Parlyfi/parly-sdk
+- https://github.com/Parlyfi/parly-mcp
 
-## Style preferences
-
-{/* Add any project-specific style rules below */}
-
-- Use active voice and second person ("you")
-- Keep sentences concise — one idea per sentence
-- Use sentence case for headings
-- Bold for UI elements: Click **Settings**
-- Code formatting for file names, commands, paths, and code references
-
-## Content boundaries
-
-{/* Define what should and shouldn't be documented */}
-{/* Example: Don't document internal admin features */}
+## SDK install
+Use:
+- npm install @parly/sdk
+- pnpm add @parly/sdk

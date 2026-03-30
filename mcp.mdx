@@ -1,0 +1,87 @@
+---
+title: "Parly MCP Server"
+description: "Use the public MCP server for bounded agent workflows with agent-owned execution and a clear security boundary."
+---
+
+Parly includes an MCP server for agentic workflows. It exposes bounded tools over agent-owned execution only and keeps agent, relayer, and treasury responsibilities separate.
+
+<CardGroup cols={2}>
+  <Card title="View MCP Source" href="https://github.com/Parlyfi/parly-mcp">
+    Open the public MCP repo.
+  </Card>
+  <Card title="View SDK Source" href="https://github.com/Parlyfi/parly-sdk">
+    Review the SDK surface the MCP server builds on.
+  </Card>
+  <Card title="How Parly Works" href="/">
+    Review the launch boundary and MPP boundary law.
+  </Card>
+  <Card title="Run a Relayer" href="/run-a-relayer">
+    Keep relayer operations separate from agent execution.
+  </Card>
+</CardGroup>
+
+## Security model
+
+The MCP server must run with an agent key only. It must not inherit:
+
+- relayer execution power
+- relayer sealed-box secrets
+- treasury control
+
+This is one of the most important safety boundaries in the Parly stack.
+
+## Install and run
+
+Use the public MCP distribution:
+
+```bash
+cp .env.example .env
+pnpm install
+pnpm start
+```
+
+Run `pnpm smoke:standalone` in the public source repo to verify install, typecheck, build, and minimal startup validation.
+
+## Supported tools
+
+The MCP server supports:
+
+- `recover_largest_note`
+- `execute_shielded_payment`
+
+When MPP compatibility is enabled, it may also support:
+
+- `mpp_create_session`
+- `mpp_settle_session_payment`
+
+## What each tool does
+
+- `recover_largest_note` recovers the largest live note controlled by the configured agent key for a given asset.
+- `execute_shielded_payment` executes a private Parly payment from notes controlled by the configured agent key.
+- `mpp_create_session` creates an MPP-compatible session descriptor around the existing execution engine.
+- `mpp_settle_session_payment` settles a Parly payment from a previously created session descriptor without introducing a separate settlement protocol.
+
+## Runtime behavior
+
+When the MCP server starts, it should make these boundaries explicit:
+
+- whether it is running with the agent key only
+- whether MPP compatibility is enabled
+- which service name and version are active when the adapter is used
+
+Visible boundary reporting is part of the product truth. It keeps the security model legible.
+
+## Known limitations
+
+- `AGENT`-key execution only
+- no relayer runtime inside this repo
+- no contract-core MPP session state
+- no scheduling
+- no swap extensions
+
+## Security and compatibility
+
+- MCP uses `AGENT` key only
+- do not configure `RELAYER` keys here
+- MPP compatibility stays at the SDK and MCP boundary only
+- the public MCP surface is compatible with the V16.9.9 launch model

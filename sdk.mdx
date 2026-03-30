@@ -1,0 +1,109 @@
+---
+title: "Parly SDK"
+description: "Use the public SDK to integrate Parly's live recovery and private execution model into services, apps, and automation."
+---
+
+The SDK is the developer integration layer for Parly. It mirrors the live recovery and execution model so services, automation systems, operators, and machine-payment environments can integrate the protocol without re-implementing its core client logic.
+
+<CardGroup cols={2}>
+  <Card title="View SDK Source" href="https://github.com/Parlyfi/parly-sdk">
+    Open the public SDK repo.
+  </Card>
+  <Card title="View MCP Source" href="https://github.com/Parlyfi/parly-mcp">
+    See the public MCP distribution.
+  </Card>
+  <Card title="How Parly Works" href="/">
+    Review the protocol boundaries the SDK must preserve.
+  </Card>
+  <Card title="Run a Relayer" href="/run-a-relayer">
+    See the operator runtime that works beside the SDK surface.
+  </Card>
+</CardGroup>
+
+## What the SDK is
+
+The SDK exists so you can use Parly without rebuilding deterministic authentication, recovery identity derivation, note-envelope handling, note reconstruction, execution request construction, exact approval logic, and outcome handling from scratch.
+
+It is not a fake abstraction layer. It preserves protocol reality while making integration practical.
+
+## What the SDK includes
+
+The SDK includes support for:
+
+- deterministic recovery key derivation from the fixed auth message
+- note-envelope decryption
+- reconstruction of private state from indexed history
+- private execution flow construction
+- exact-amount approval handling
+- clear handling of uncertain or pending execution outcomes
+- optional MPP-compatible wrappers above the same execution engine
+
+## Install
+
+```bash
+npm install @parly/sdk
+```
+
+```bash
+pnpm add @parly/sdk
+```
+
+## Initialize the SDK
+
+Create the SDK with an agent-owned execution key, Tempo RPC URL, and Tempo chain ID.
+
+```ts
+import { ParlySDK, ParlyMppAdapter } from "@parly/sdk";
+
+const sdk = new ParlySDK({
+  privateKeyHex: process.env.AGENT_PRIVATE_KEY as `0x${string}`,
+  tempoChainId: Number(process.env.TEMPO_CHAIN_ID),
+  tempoRpcUrl: process.env.TEMPO_RPC_URL!
+});
+
+const mpp = new ParlyMppAdapter(sdk, {
+  serviceName: process.env.MPP_SERVICE_NAME,
+  serviceVersion: process.env.MPP_SERVICE_VERSION
+});
+```
+
+This is the intended initialization shape for service-side integrations and agent workflows.
+
+## Example flows
+
+The public SDK surface is built for:
+
+- basic shielded payment flows
+- agent or app integrations
+- explicit error handling
+- MPP-compatible wrapping at the SDK boundary only
+
+See the public repo for runnable examples and source-level release validation.
+
+## What the SDK does not do
+
+The SDK does not:
+
+- change pool behavior
+- add on-chain session state
+- bypass deterministic recovery
+- hide exact approval handling
+- blur the line between submitted, pending, and confirmed
+
+Its job is to preserve protocol correctness while making integration easier.
+
+## Security and compatibility
+
+- keep `AGENT` keys separate from `RELAYER` keys
+- do not run the SDK with server-only secrets in an untrusted browser context
+- MPP compatibility stays at the SDK and MCP boundary only
+- `@parly/sdk@16.9.9` targets Parly core `16.9.9`
+- the public SDK is compatible with MCP release `16.9.9-mcp.0`
+
+## Current limitations
+
+- no scheduling
+- no swaps
+- no passkeys in privacy mode
+
+You can run `pnpm smoke:standalone` in the public source repo to verify install, typecheck, build, tests, and publish dry-run behavior.

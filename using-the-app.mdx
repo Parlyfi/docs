@@ -1,0 +1,97 @@
+---
+title: "Using the App"
+description: "Learn the user flow for connecting, authenticating, shielding, executing privately, reviewing activity, and handing off to Verify."
+---
+
+The Parly app is the primary user-facing surface for shielding, recovery, private execution, activity review, and selective verification. It keeps shielding, sending, history, receipts, and verification handoff in one product flow.
+
+<CardGroup cols={2}>
+  <Card title="Open App" href="https://parly.fi/app">
+    Use the live app.
+  </Card>
+  <Card title="Open Verify" href="https://parly.fi/verify">
+    Verify one disclosed payout lane.
+  </Card>
+  <Card title="How Parly Works" href="/">
+    Review the launch surface and product boundaries.
+  </Card>
+  <Card title="Start Here" href="/quickstart">
+    Jump to the right public entry point.
+  </Card>
+</CardGroup>
+
+## What the app is for
+
+The app is where you connect a wallet, authenticate private state, shield supported stablecoins, execute private payouts, review activity in Parly Ledger & Compliance, prepare a scoped receipt, and hand that receipt to Verify when proof is needed.
+
+## Connect and authenticate
+
+Parly does not treat wallet connection and private-state access as the same thing.
+
+The user flow is:
+
+1. connect your wallet
+2. authenticate by signing the fixed auth message
+3. recover private state from indexed chain data
+4. enter the ready state with shielded balance and execution controls unlocked
+
+This is why a connected wallet is not automatically a ready private session.
+
+## Shield supported stablecoins
+
+Parly supports shielding `USDC` and `USDT`.
+
+You can shield:
+
+- directly on Tempo
+- from Ethereum into Tempo
+- from Arbitrum into Tempo
+- from Base into Tempo
+- from BSC into Tempo
+
+The app should keep finality honest. If a source-side action lands but Tempo settlement is still unresolved, the UI should show recovery or uncertain-finality state instead of pretending the result is already final.
+
+## Execute private payouts
+
+The app supports:
+
+- private same-chain payouts on Tempo
+- private cross-chain stablecoin-only payouts from Tempo to supported spokes
+- single-send execution
+- batch execution up to `10` outputs per proof
+- third-party private relay over Waku by default
+- self-relay fallback when needed
+
+The app should keep `submitted`, `pending`, `confirmed`, and `failed` distinct.
+
+## Review in Parly Ledger & Compliance
+
+Parly Ledger & Compliance is the in-app review surface for deposits, private executions, change-note activity, scoped receipt preparation, and proof handoff.
+
+You should use it to:
+
+- review deposit history
+- review private execution history
+- open one payout scope only
+- export or share the data needed for one selective verification flow
+
+## Hand off to Verify
+
+Verify works from two values:
+
+- the confirmed Tempo transaction hash
+- the disclosed child key
+
+The app should help you prepare that narrow disclosure cleanly, then hand the reviewer off to the public Verify portal.
+
+## Boundaries to keep in mind
+
+The app does not turn Parly into:
+
+- a scheduler
+- a swap router
+- a volatile-token payout system
+- a passkey privacy product
+- a protocol-owned exclusive relay network
+
+It is a private stablecoin execution surface with deterministic recovery and selective proof.

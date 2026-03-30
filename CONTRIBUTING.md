@@ -1,34 +1,35 @@
-> **Customize this file**: Tailor this template to your project by noting specific contribution types you're looking for, adding a Code of Conduct, or adjusting the writing guidelines to match your style.
+# Contributing to Parly docs
 
-# Contribute to the documentation
+Thank you for helping improve the Parly public docs.
 
-Thank you for your interest in contributing to our documentation! This guide will help you get started.
+## Before you edit
 
-## How to contribute
+Read [AGENTS.md](./AGENTS.md) first. It is the canonical repo guidance file for this repository.
 
-### Option 1: Edit directly on GitHub
+Use the files in `references/` as the source of truth for product law, public framing, registry behavior, and removable analytics boundaries.
 
-1. Navigate to the page you want to edit
-2. Click the "Edit this file" button (the pencil icon)
-3. Make your changes and submit a pull request
+## Contribution scope
 
-### Option 2: Local development
+Use this repo for:
 
-1. Fork and clone this repository
-2. Install the Mintlify CLI: `npm i -g mint`
-3. Create a branch for your changes
-4. Make changes
-5. Navigate to the docs directory and run `mint dev`
-6. Preview your changes at `http://localhost:3000`
-7. Commit your changes and submit a pull request
+- public docs page updates
+- navigation updates in `docs.json`
+- wording and structure cleanup for the Mintlify public docs surface
 
-For more details on local development, see our [development guide](development.mdx).
+Do not use this repo to document killed launch features or unpublished internal surfaces unless explicitly asked.
 
-## Writing guidelines
+## Local development
 
-- **Use active voice**: "Run the command" not "The command should be run"
-- **Address the reader directly**: Use "you" instead of "the user"
-- **Keep sentences concise**: Aim for one idea per sentence
-- **Lead with the goal**: Start instructions with what the user wants to accomplish
-- **Use consistent terminology**: Don't alternate between synonyms for the same concept
-- **Include examples**: Show, don't just tell
+1. Install the Mintlify CLI: `npm i -g mint`
+2. Run `mint dev` from the repo root
+3. Preview the docs locally
+4. Run `mint broken-links` before pushing when the CLI is available
+
+## Writing rules
+
+- use active voice and second person
+- keep sentences concise
+- distinguish between user, operator, developer, and agent-builder journeys
+- keep `submitted`, `pending`, `confirmed`, and `failed` distinct where execution state matters
+- do not imply that the relayer registry permissions protocol participation
+- do not tell public users to clone the private canonical monorepo
