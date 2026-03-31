@@ -1,6 +1,6 @@
  {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "maple",
   "name": "Parly",
   "description": "Private stablecoin omnichain infrastructure for the agentic economy.",
   "colors": {
@@ -8,7 +8,10 @@
     "light": "#FFFFFF",
     "dark": "#111C1E"
   },
-  "favicon": "/favicon.svg",
+  "favicon": {
+    "light": "/images/parly-logo-Copy-Copy.png",
+    "dark": "/images/parly-logo-green.png"
+  },
   "logo": {
     "light": "/images/parly-logo.png",
     "dark": "/images/parly-logo-green.png"
