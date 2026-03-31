@@ -1,8 +1,8 @@
-
 ---
 title: "Architecture Overview"
-description: "Parly is designed as a focused privacy execution stack rather than a single frontend with hidden assumptions. This page explains the core system components, how they relate to one another, and why the product is structured this way."
 ---
+
+Parly is designed as a focused privacy execution stack rather than a single frontend with hidden assumptions. This page explains the core system components, how they relate to one another, and why the product is structured this way.
 
 - [Open App](https://parly.fi/app)
 - [View Relayer Source](https://github.com/Parlyfi/parly-relayer)
@@ -10,7 +10,6 @@ description: "Parly is designed as a focused privacy execution stack rather than
 - [View MCP Source](https://github.com/Parlyfi/parly-mcp)
 
 ## High-level system design
-
 Parly uses a hub-and-spoke model with Tempo as the privacy hub.
 
 At a high level, the stack consists of:
@@ -25,7 +24,6 @@ At a high level, the stack consists of:
 - optional analytics infrastructure
 
 ## Network topology
-
 The live network set is:
 
 - Tempo as the privacy and settlement hub
@@ -39,9 +37,7 @@ These supported spoke networks route into Tempo for shielding and receive stable
 ## Web application
 
 The web application is the user-facing product surface.
-
 It handles:
-
 - wallet connection
 - authentication
 - private-state recovery
@@ -52,17 +48,14 @@ It handles:
 - verification handoff
 
 ## Contracts and circuits
-
 The contract layer holds the settlement logic for shielding, private execution, and hub-and-spoke routing. The circuit layer defines the proof system used for private execution and keeps the execution model bounded and predictable.
 
 Parly uses a fixed padded execution model at launch. That stability matters because frontend, relayer, SDK, and contract boundaries all need the same execution shape.
 
 ## Relayer
-
 The relayer is the private execution daemon.
 
 It:
-
 - receives encrypted relay requests
 - decrypts only the requests addressed to it
 - validates and submits execution
@@ -70,22 +63,18 @@ It:
 - reconciles pending outcomes later
 
 ## Indexer
-
 The indexer is the public data layer.
 
 It serves:
-
 - activity history
 - verification queries
 - provenance joins where available
 - analytics surfaces
 
 ## SDK
-
 The SDK is the developer integration layer.
 
 It mirrors:
-
 - deterministic authentication
 - recovery identity derivation
 - note handling
@@ -94,17 +83,14 @@ It mirrors:
 - outcome handling
 
 ## MCP server
-
 The MCP server is the bounded agent tooling layer.
 
 It allows:
-
 - note recovery
 - immediate private payment execution
 - session-shaped machine-payment flows through the MPP-compatible adapter when enabled
 
 ## Repository and deployment posture
-
 Parly maintains one private canonical monorepo as the internal source of truth. Public code distribution is split by role into:
 
 - a public relayer repo for operators
