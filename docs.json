@@ -10,8 +10,8 @@
   },
   "favicon": "/favicon.svg",
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/images/parly-logo.png",
+    "dark": "/images/parly-logo-green.png"
   },
   "navigation": {
     "tabs": [
@@ -73,5 +73,8 @@
       "github": "https://github.com/Parlyfi/parly-sdk",
       "x": "https://x.com/ParlyFi"
     }
+  },
+  "background": {
+    "decoration": "gradient"
   }
 }
