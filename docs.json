@@ -1,6 +1,6 @@
  {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "maple",
+  "theme": "palm",
   "name": "Parly",
   "description": "Private stablecoin omnichain infrastructure for the agentic economy.",
   "colors": {
