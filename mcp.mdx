@@ -18,27 +18,27 @@ This is one of the most important safety boundaries in the Parly stack.
 
 The MCP server supports:
 
-- recover_largest_note
-- execute_shielded_payment
+- recover\_largest\_note
+- execute\_shielded\_payment
 
 When MPP compatibility is enabled, it may also support:
 
-- mpp_create_session
-- mpp_settle_session_payment
+- mpp\_create\_session
+- mpp\_settle\_session\_payment
 
-## recover_largest_note
+## recover\_largest\_note
 
 This tool recovers the largest live note controlled by the configured agent key for a given asset. It is useful for agents that need to reason about current private spendable balance before attempting execution.
 
-## execute_shielded_payment
+## execute\_shielded\_payment
 
 This tool executes a private Parly payment from notes controlled by the configured agent key. It is the direct immediate execution path for agent workflows.
 
-## mpp_create_session
+## mpp\_create\_session
 
 This tool creates an MPP-compatible session descriptor around the current agent-owned execution path. It is useful when an agent or service wants a machine-readable spending lane without changing protocol law.
 
-## mpp_settle_session_payment
+## mpp\_settle\_session\_payment
 
 This tool settles a Parly payment from a previously created session descriptor. It reuses the same execution engine rather than introducing a separate settlement protocol.
 
@@ -50,4 +50,12 @@ When the MCP server starts, it should make the active key scope and adapter stat
 - whether MPP compatibility is enabled
 - which service name and version are active when the adapter is used
 
-This visible boundary is good public runtime behavior because it makes the security model obvious instead of vague.
+### Who it is for
+
+The MCP server is intended for:
+
+- agent builders
+- copilots
+- service agents
+- automated systems
+- teams integrating bounded AI-driven payment workflows
