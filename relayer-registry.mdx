@@ -3,7 +3,7 @@ title: "Relayer Registry"
 description: "The relayer registry supports official frontend discovery and relayer public-key distribution. It does not permission the protocol and it does not create exclusive relay rights."
 ---
 
-- [Relayer Registration](https://parly.fi/relayer)
+- [Relayer Registration](/relayer-registry)
 - [Run a Relayer](/relayers)
 - [View Relayer Source](https://github.com/Parlyfi/parly-relayer)
 
@@ -11,21 +11,17 @@ description: "The relayer registry supports official frontend discovery and rela
 
 The official frontend needs to know which relayer execution addresses are officially discoverable and which relayer public keys it may encrypt bundles to. That is what the registry does.
 
-It is a discovery layer for the official app. It is not a protocol-level allowlist.
-
 ## Registry policy
 
 The official Parly registry supports a maximum of 10 live relayers.
 
-Registration is automatic if validation passes and a slot is available. Inactive relayers are removed from official live discovery so slots can reopen without turning the product into a moderation marketplace or review queue.
-
-That keeps the registry lean, legible, and operator-grade.
+Registration is automatic if validation passes and a slot is available. Inactive relayers are removed from official live discovery so slots can reopen while keeping the registry lean and operator-grade.
 
 ## Register a relayer
 
 Go to:
 
-[parly.fi/relayer](https://parly.fi/relayer)
+`[parly.fi/relayer}(https://parly.fi/relayer)`
 
 You will need:
 
@@ -43,15 +39,15 @@ Registration succeeds automatically if:
 
 ## Registry states
 
-**Verified**
+**Verified**  
 Live in official frontend discovery.
 
-**Inactive**
+**Inactive**  
 Previously live, now removed from official discovery because of inactivity, operator withdrawal, manual disable action, or failed health expectations.
 
-**Rejected**
+**Rejected**  
 Failed automatic validation.
 
 ## Important note
 
-Official listing improves public frontend discovery only. It does not control whether the protocol is open, and it does not stop advanced users, SDK users, or custom frontend operators from targeting independent relayers directly.
+Official listing improves public frontend discovery only. It does not control whether the protocol is open, and it does not prevent advanced users, SDK users, or custom frontend operators from targeting independent relayers directly.
