@@ -1,94 +1,77 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Parly Docs",
+  "name": "Parly",
+  "description": "Private stablecoin omnichain infrastructure for the agentic economy.",
   "colors": {
-    "primary": "#A7fd98",
-    "light": "#FFFFFF",
-    "dark": "#111C1E"
+    "primary": "#16A34A",
+    "light": "#22C55E",
+    "dark": "#15803D"
   },
-  "favicon": "/images/parly-logo-Copy-Copy.png",
+  "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
   "navigation": {
-    "global": {
-      "anchors": [
-        {
-          "anchor": "View Relayer Source",
-          "href": "https://github.com/Parlyfi/parly-relayer"
-        },
-        {
-          "anchor": "View SDK Source",
-          "href": "https://github.com/Parlyfi/parly-sdk"
-        },
-        {
-          "anchor": "View MCP Source",
-          "href": "https://github.com/Parlyfi/parly-mcp"
-        }
-      ]
-    },
     "tabs": [
       {
         "tab": "Docs",
         "groups": [
           {
-            "group": "Documentation",
+            "group": "Getting Started",
             "pages": [
               "index",
-              "quickstart",
+              "quickstart"
+            ]
+          },
+          {
+            "group": "Product",
+            "pages": [
               "app",
               "verify",
-              "relayers",
-              "sdk",
-              "mcp",
-              "relayer-registry",
               "architecture"
+            ]
+          },
+          {
+            "group": "Operators",
+            "pages": [
+              "relayers",
+              "relayer-registry"
+            ]
+          },
+          {
+            "group": "Developers",
+            "pages": [
+              "sdk",
+              "mcp"
             ]
           }
         ]
       }
     ]
   },
-  "logo": {
-    "light": "/images/parly-logo.png",
-    "dark": "/images/parly-logo-green.png"
-  },
   "navbar": {
     "links": [
       {
-        "label": "Open Verify",
-        "href": "https://parly.fi/verify"
+        "label": "Open App",
+        "href": "https://parly.fi/app"
       },
       {
-        "label": "Relayer Registration",
-        "href": "https://parly.fi/relayer"
+        "label": "Open Verify",
+        "href": "https://parly.fi/verify"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Open App",
-      "href": "https://parly.fi/app"
+      "label": "Run a Relayer",
+      "href": "/relayers"
     }
-  },
-  "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
-    ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/ParlyFi",
-      "github": "https://github.com/Parlyfi"
-    }
-  },
-  "background": {
-    "color": {
-      "dark": "#111C1E"
+      "github": "https://github.com/Parlyfi/parly-sdk",
+      "x": "https://x.com/ParlyFi"
     }
   }
-}
+}}
