@@ -12,15 +12,28 @@ description: "Parly is private stablecoin omnichain infrastructure for the agent
 
 Parly is a privacy protocol for stablecoin movement across supported networks, with Tempo as the privacy hub. It enables users to move supported stablecoins into private balance, execute private payouts, and verify disclosed payment lanes when independent confirmation is required.
 
-Parly is purpose-built for private stablecoin execution. The product is focused on clear settlement, dependable recovery, and selective proof. That focus helps keep the system operationally legible for users, teams, developers, and counterparties.
+Parly is built for private stablecoin execution with a clear operating model. Its public product surface is centered on shielding, private settlement, deterministic recovery, selective verification, and integration for developers and agent-driven systems.
 
-At launch, Parly supports direct shielding on Tempo, spoke-origin shielding into Tempo, private same-network payouts on Tempo, private cross-network stablecoin-only payouts to supported spokes, third-party private relay execution over Waku, self-relay fallback, a public verification portal, a developer SDK, an MCP server, and an MPP-compatible adapter at the SDK and MCP boundary.
+At launch, Parly supports direct shielding on Tempo, spoke-origin shielding into Tempo, private same-network payouts on Tempo, private cross-network stablecoin-only payouts to supported spoke networks, third-party private relay execution over Waku, self-relay fallback, a public verification portal, a developer SDK, an MCP server, and an MPP-compatible adapter at the SDK and MCP boundary.
 
-## Platform focus
+## Assets and settlement model
 
-Parly is designed around one core job: private stablecoin movement with reliable recovery and selective verification.
+Parly is stablecoin-native.
 
-The public product surface is centered on shielding, private execution, proof preparation, verification, and integrations. Each of those surfaces is designed to support real operational use rather than abstract protocol exploration.
+At launch, the core product supports private stablecoin movement using supported stablecoin pools, with Tempo serving as the privacy and settlement hub. This gives users and operators a clear model for shielding, execution, recovery, and verification.
+
+## Supported networks and routing model
+
+Parly uses a hub-and-spoke topology with **Tempo** as the privacy hub.
+
+At launch, the supported network set is:
+- **Tempo** as the settlement and privacy hub
+- **Ethereum**
+- **Arbitrum**
+- **Base**
+- **BSC**
+
+Supported spoke networks route value into Tempo for shielding and receive private stablecoin payouts from Tempo on outbound delivery. This keeps privacy state, recovery logic, and verification logic centered within one consistent operating model.
 
 ## Privacy and recovery
 
@@ -38,13 +51,7 @@ A user can disclose one payout lane without exposing the wider execution set. Th
 
 Verification is intentionally scoped. It is designed to confirm the disclosed payout lane clearly and independently.
 
-## Supported networks and routing model
-
-Parly uses a hub-and-spoke topology with Tempo as the privacy hub.
-
-Supported spoke networks route into Tempo for shielding and receive private stablecoin payouts from Tempo on outbound delivery. This keeps privacy state, recovery logic, and verification logic centered within a consistent operating model.
-
-## Machine payments and agent integrations
+## Developer and agent integrations
 
 Parly supports developer and agent integrations through a public SDK and an MCP server.
 
@@ -56,7 +63,7 @@ Parly distinguishes clearly between submitted, pending, confirmed, and failed st
 
 Private relay execution stops at encrypted submission until execution is actually confirmed. Direct browser execution should only be presented as successful once a confirmed result exists on Tempo. When an outcome is still uncertain, Parly keeps that uncertainty visible.
 
-## Current support launch
+## Current support at launch
 
 Parly currently supports:
 
@@ -65,7 +72,7 @@ Parly currently supports:
 - shielding on Tempo
 - spoke-origin shielding into Tempo
 - private same-network payouts on Tempo
-- private cross-network stablecoin-only payouts
+- private cross-network stablecoin-only payouts to supported spoke networks
 - private relay over Waku
 - self-relay fallback
 - selective verification
@@ -74,7 +81,7 @@ Parly currently supports:
 - MPP-compatible integration at the SDK and MCP boundary only
 - off-chain removable shield-mining analytics where enabled
 
-## Footer CTA
+## Next steps
 
 - [Open App](https://parly.fi/app)
 - [Open Verify](https://parly.fi/verify)
