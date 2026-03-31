@@ -1,3 +1,4 @@
+
 ---
 title: "Architecture Overview"
 description: "Parly is designed as a focused privacy execution stack rather than a single frontend with hidden assumptions. This page explains the core system components, how they relate to one another, and why the product is structured this way."
@@ -23,7 +24,17 @@ At a high level, the stack consists of:
 - the MCP server
 - optional analytics infrastructure
 
-Each component has a specific role. The architecture is designed so that recovery logic, public indexing, relay execution, agent tooling, and analytics do not collapse into one trust domain.
+## Network topology
+
+The live network set is:
+
+- Tempo as the privacy and settlement hub
+- Ethereum
+- Arbitrum
+- Base
+- BSC
+
+These supported spoke networks route into Tempo for shielding and receive stablecoin payouts from Tempo on outbound delivery.
 
 ## Web application
 
