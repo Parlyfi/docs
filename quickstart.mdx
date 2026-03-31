@@ -14,10 +14,6 @@ Start with the App.
 
 That is the user-facing control surface for wallet connection, authentication, shielding, private execution, activity review, selective receipts, and verification handoff. It is where product truth becomes usable.
 
-From the App, a user can connect a wallet, authenticate private state, shield supported stablecoins, execute private payouts, review history, and prepare a disclosed payout lane for independent verification.
-
-**CTA**
-
 - [Open App](https://parly.fi/app)
 - [Using the App](/app)
 
@@ -25,11 +21,7 @@ From the App, a user can connect a wallet, authenticate private state, shield su
 
 Start with the relayer docs and the public relayer source.
 
-Parly ships a full relayer runtime, not just a vague relay concept. Operators do not need to invent their own private-execution daemon from zero before participating. The shipped relayer covers key generation, encrypted bundle handling, execution validation, submission, and pending-state reconciliation.
-
-This is the right path if you want to operate private execution infrastructure.
-
-**CTA**
+Parly ships a real relayer runtime. Operators do not need to design their own private-execution daemon from first principles before participating.
 
 - [Run a Relayer](/relayers)
 - [View Relayer Source](https://github.com/Parlyfi/parly-relayer)
@@ -40,11 +32,9 @@ This is the right path if you want to operate private execution infrastructure.
 
 Start with the SDK.
 
-The SDK is the developer integration surface for deterministic authentication, recovery identity derivation, note handling, execution request construction, exact approval discipline, and outcome handling. It mirrors the live protocol model instead of pretending the protocol is simpler than it really is.
+The SDK is the developer integration surface for deterministic authentication, recovery identity derivation, note handling, execution request construction, exact approval discipline, and outcome handling. 
 
 This is the correct entry point for backend services, automation, service operators, and integrations that want protocol-accurate behavior.
-
-**CTA**
 
 - [View SDK Source](https://github.com/Parlyfi/parly-sdk)
 - [Parly SDK](/sdk)
@@ -54,11 +44,9 @@ This is the correct entry point for backend services, automation, service operat
 
 Start with the MCP docs.
 
-The MCP server exists for bounded agent workflows. It exposes agent-owned tools, keeps agent keys separate from relayer and treasury power, and supports MPP-compatible wrapping where needed without changing the core protocol law.
+The MCP server exists for bounded agent workflows. It exposes agent-owned tools, keeps agent keys separate from relayer and treasury power, and supports MPP-compatible wrapping where needed.
 
 This is the right path for copilots, service agents, and headless automation.
-
-**CTA**
 
 - [View MCP Source](https://github.com/Parlyfi/parly-mcp)
 - [Parly MCP Server](/mcp)
@@ -68,29 +56,21 @@ This is the right path for copilots, service agents, and headless automation.
 
 Start with How Parly Works and Architecture Overview.
 
-Those pages explain the launch surface, recovery model, selective verification, relay model, SDK/MCP boundary, and the parts that are intentionally excluded.
-
-**CTA**
+Those pages explain the launch surface, recovery model, selective verification, relay model, SDK/MCP boundary, and the role of each major component.
 
 - [How Parly Works](/)
 - [Architecture Overview](/architecture)
 
 ## Public surfaces
 
-**App**
-The main execution surface for shielding, recovery, private execution, activity review, selective disclosure, and verification handoff.
+**App** The main execution surface for shielding, recovery, private execution, activity review, selective disclosure, and verification handoff.
 
-**Verify**
-The public verification surface for one disclosed payout lane.
+**Verify** The public verification surface for one disclosed payout lane.
 
-**Relayer**
-The operator runtime for private execution.
+**Relayer** The operator runtime for private execution.
 
-**Registry**
-The official discovery surface for relayer listing in the public app.
+**Registry** The official discovery surface for relayer listing in the public app.
 
-**SDK**
-The developer integration layer.
+**SDK** The developer integration layer.
 
-**MCP Server**
-The agent tooling layer.
+**MCP Server** The agent tooling layer.

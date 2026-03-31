@@ -12,20 +12,6 @@ description: "The SDK is the developer integration layer for Parly. It mirrors t
 
 The SDK exists so developers can use Parly without rebuilding deterministic authentication, recovery identity derivation, note-envelope handling, note reconstruction, execution request construction, exact approval logic, and outcome handling from scratch.
 
-It is not a fake abstraction layer. It preserves protocol reality while making integration practical.
-
-## What the SDK includes
-
-The SDK includes support for:
-
-- deterministic recovery key derivation from the fixed auth message
-- note-envelope decryption
-- reconstruction of private state from indexed history
-- private execution flow construction
-- exact-amount approval handling
-- clear handling of uncertain or pending execution outcomes
-- optional MPP-compatible wrappers above the same execution engine
-
 ## Install
 
 ```bash
@@ -50,13 +36,21 @@ const mpp = new ParlyMppAdapter(sdk, {
 })
 ```
 
-This is the intended initialization shape for service-side integrations and agent workflows. It matches the live SDK and MCP boundary model.
+## What the SDK includes
+
+The SDK includes support for:
+
+- deterministic recovery key derivation from the fixed auth message
+- note-envelope decryption
+- reconstruction of private state from indexed history
+- private execution flow construction
+- exact-amount approval handling
+- clear handling of uncertain or pending execution outcomes
+- optional MPP-compatible wrappers above the same execution engine
 
 ## What the SDK handles
 
 The SDK handles deterministic auth-message usage, recovery key derivation, note-envelope handling, note reconstruction, direct execution path construction, exact approval flow, and outcome handling.
-
-That is why the SDK should be treated as a real integration surface and not just a sample package.
 
 ## MPP-compatible integration
 
@@ -88,16 +82,13 @@ const outcome = await mpp.settleFromSession(
 )
 ```
 
-This adapter does not alter pool logic, circuit semantics, or contract-level settlement rules. It creates a developer-friendly session layer above the same privacy engine.
+### Who the SDK is for
 
-## What the SDK does not do
+The SDK is intended for:
 
-The SDK does not:
-
-- turn Parly into a different settlement protocol
-- add on-chain session state
-- bypass the recovery model
-- hide exact approval handling
-- blur the line between submitted, pending, and confirmed
-
-Its job is to preserve protocol correctness while making integration easier.
+- backend services
+- developer integrations
+- operator tooling
+- automation systems
+- machine-payment environments
+- agent stacks that integrate through the SDK boundary

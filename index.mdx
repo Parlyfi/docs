@@ -1,6 +1,6 @@
 ---
 title: "How Parly Works"
-description: "Parly is a privacy protocol for stablecoin movement across supported networks. It is built for people, teams, and machine-driven systems that want private execution, deterministic recovery, and selective proof without turning the product into a trading terminal, a workflow scheduler, or a protocol-owned relay monopoly."
+description: "Parly is private stablecoin omnichain infrastructure for the agentic economy. It is designed for people, teams, and machine-driven systems that need private execution, deterministic recovery, and selective verification across supported networks."
 ---
 
 - [Open App](https://parly.fi/app)
@@ -8,61 +8,55 @@ description: "Parly is a privacy protocol for stablecoin movement across support
 - [Start Here](/quickstart)
 - [Run a Relayer](/relayers)
 
-## What Parly does
+## What Parly is
 
-Parly allows users to move supported stablecoins into a private balance on Tempo, spend privately on Tempo, and send privately from Tempo to supported destination networks. The protocol is intentionally built for immediate execution. It does not blur into delayed workflows, generalized swap logic, or a bloated "do everything" control panel.
+Parly is a privacy protocol for stablecoin movement across supported networks, with Tempo as the privacy hub. It enables users to move supported stablecoins into private balance, execute private payouts, and verify disclosed payment lanes when independent confirmation is required.
 
-At public launch, the live product surface includes direct shielding on Tempo, spoke-origin shielding into Tempo, private same-network payouts on Tempo, private cross-network stablecoin-only payouts from Tempo to supported spokes, third-party private relay execution over Waku, self-relay fallback, a public verification portal, a developer SDK, an MCP server, and an MPP-compatible adapter only at the SDK/MCP boundary.
+Parly is purpose-built for private stablecoin execution. The product is focused on clear settlement, dependable recovery, and selective proof. That focus helps keep the system operationally legible for users, teams, developers, and counterparties.
 
-Parly is meant to feel sharp, controlled, and legible. The product is narrower by design because narrow systems are easier to trust, easier to operate, and easier to recover.
+At launch, Parly supports direct shielding on Tempo, spoke-origin shielding into Tempo, private same-network payouts on Tempo, private cross-network stablecoin-only payouts to supported spokes, third-party private relay execution over Waku, self-relay fallback, a public verification portal, a developer SDK, an MCP server, and an MPP-compatible adapter at the SDK and MCP boundary.
 
-## What Parly does not do
+## Platform focus
 
-Parly does not try to be everything at once. It does not launch with scheduling, delayed execution, intent vaults, REST intent APIs, swap routing, 1inch integration, volatile-token payout paths, passkey privacy mode, dual identity planes, on-chain session settlement, transient note chaining, or a protocol-owned exclusive relay network.
+Parly is designed around one core job: private stablecoin movement with reliable recovery and selective verification.
 
-Those are not accidental omissions. They are deliberate exclusions that keep the launch surface stable and production-reasonable.
-
-Parly is a privacy execution system. It is not a trading interface, not a scheduling engine, and not a protocol-owned relay monopoly.
+The public product surface is centered on shielding, private execution, proof preparation, verification, and integrations. Each of those surfaces is designed to support real operational use rather than abstract protocol exploration.
 
 ## Privacy and recovery
 
-Parly is designed so recovery does not depend on browser kindness, local storage luck, or one specific device surviving forever. Private state is tied to a deterministic wallet-derived recovery identity plus the on-chain note and envelope data the protocol emits during shielding and execution.
+Parly’s recovery model is designed so access to private state does not depend on a single browser session or a single device.
 
-Browser storage may improve convenience. It is not the recovery authority.
+Private state is tied to a deterministic wallet-derived recovery identity together with the on-chain note and envelope data emitted during shielding and execution. Browser storage may improve convenience, but it is not the source of recovery truth.
 
-The protocol uses encrypted note envelopes so a user can recover live notes from chain-visible history on a future device. The envelope is created for the intended owner, and only the owner with the matching recovery private key can open it. Recovery therefore stays anchored to wallet control rather than device memory.
-
-That model is what gives Parly its "serious infrastructure" feel. The user experience can be smooth, but the recovery truth stays cryptographic.
+Parly uses encrypted note envelopes so that a user can recover live notes from chain-visible history on a future device. The envelope is created for the intended owner, and only the owner with the matching recovery private key can open it. This keeps recovery anchored to wallet control rather than device memory.
 
 ## Verification and selective disclosure
 
-Parly includes a public verification flow designed for selective disclosure. A user can disclose one payout lane without exposing the wider execution set. That is useful for counterparties, exchanges, auditors, finance teams, and reviewers who need proof of one payment without opening the rest of a private treasury graph.
+Parly includes a public verification flow designed for selective disclosure.
 
-Verification is intentionally narrow. It is not meant to become a batch-cost reconciliation console, a general-purpose explorer, or a backdoor treasury inspection surface.
+A user can disclose one payout lane without exposing the wider execution set. This is useful for counterparties, exchanges, auditors, finance teams, and reviewers who need confidence in one payment without requiring visibility into the rest of a private treasury graph.
 
-The point is simple: prove what was deliberately disclosed, and nothing more.
+Verification is intentionally scoped. It is designed to confirm the disclosed payout lane clearly and independently.
 
 ## Supported networks and routing model
 
-Parly uses Tempo as the privacy hub. Supported spoke networks route into Tempo for shielding and receive private stablecoin payouts from Tempo on outbound delivery. That topology is intentional. It keeps privacy state, recovery logic, and verification logic centered instead of spreading them across unrelated chains with inconsistent assumptions.
+Parly uses a hub-and-spoke topology with Tempo as the privacy hub.
 
-Not every network is treated as equivalent. The hub-and-spoke design is one of the reasons the system remains easier to reason about under pressure.
+Supported spoke networks route into Tempo for shielding and receive private stablecoin payouts from Tempo on outbound delivery. This keeps privacy state, recovery logic, and verification logic centered within a consistent operating model.
 
 ## Machine payments and agent integrations
 
-Parly supports developer and agent integrations through a public SDK and an MCP server. It also supports MPP compatibility, but only at the SDK and MCP boundary. That means Parly can fit into machine-payment workflows without rewriting the protocol core around session contracts or changing the settlement model into something it is not.
+Parly supports developer and agent integrations through a public SDK and an MCP server.
 
-In practical terms, Parly remains the privacy settlement layer. Session-shaped workflows and machine-payment adapters live above it.
+It also supports MPP-compatible integration at the SDK and MCP boundary. This allows Parly to fit into machine-payment and agent-driven workflows while preserving a clear core settlement model.
 
 ## Reliability and execution clarity
 
-Parly explicitly distinguishes between submitted, pending, confirmed, and failed.
+Parly distinguishes clearly between submitted, pending, confirmed, and failed states.
 
-Private relay execution stops at encrypted submission until execution is actually confirmed. Direct browser execution should only report success after a confirmed result on Tempo. When the outcome is still uncertain, Parly keeps that uncertainty visible instead of pretending the result is final.
+Private relay execution stops at encrypted submission until execution is actually confirmed. Direct browser execution should only be presented as successful once a confirmed result exists on Tempo. When an outcome is still uncertain, Parly keeps that uncertainty visible.
 
-That honesty matters. Privacy systems lose trust the moment they start collapsing "submitted" and "confirmed" into the same message.
-
-## Public launch scope
+## Current support launch
 
 Parly currently supports:
 
@@ -79,19 +73,6 @@ Parly currently supports:
 - MCP-based agent integration
 - MPP-compatible integration at the SDK and MCP boundary only
 - off-chain removable shield-mining analytics where enabled
-
-Parly does not currently support:
-
-- scheduling
-- delayed execution
-- intent vaults
-- REST intent APIs
-- swap routing
-- volatile-token outputs
-- passkey privacy mode
-- protocol-owned exclusive relay operation
-- on-chain session state for machine payments
-- plaintext local note storage as a recovery dependency
 
 ## Footer CTA
 

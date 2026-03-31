@@ -11,9 +11,7 @@ description: "Parly Verify allows a counterparty, auditor, exchange, or reviewer
 
 Verify is the public selective-disclosure surface for Parly.
 
-It answers one narrow question extremely well:
-
-Does this disclosed child key correspond to a real payout lane in the referenced Parly execution?
+It answers one narrow question clearly: does this disclosed child key correspond to a real payout lane in the referenced Parly execution?
 
 That makes Verify useful for counterparties, auditors, finance teams, exchanges, and compliance reviewers who need confidence in one disclosed payment without demanding access to the sender's full private history.
 
@@ -40,18 +38,6 @@ Depending on the available indexed and scoped data, the result may display:
 
 The purpose is not to reveal everything. The purpose is to prove the disclosed lane cleanly, publicly, and independently.
 
-## What Verify does not do
-
-Verify does not:
-
-- reveal the entire private execution set
-- expose unrelated payout lanes
-- reconstruct full treasury behavior
-- assign shared route economics to one disclosed lane
-- replace a full internal audit system
-
-It stays narrow because selective verification only works if the proof surface remains selective.
-
 ## Who Verify is for
 
 Verify is for anyone who needs confidence in one disclosed payout lane without opening the wider private set.
@@ -76,7 +62,7 @@ If the disclosed values match a real lane, Verify confirms it. If they do not, t
 
 ## Why selective verification matters
 
-Selective verification gives users a practical compliance path without forcing them to open the rest of a private execution set.
+Selective verification gives users a practical compliance path without requiring them to expose the rest of a private execution set.
 
 Privacy without any proof surface is difficult to use in real operations.
 
