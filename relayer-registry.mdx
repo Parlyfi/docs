@@ -1,21 +1,21 @@
 ---
 title: "Relayer Registry"
-description: "The relayer registry supports official frontend discovery and relayer public-key distribution. It does not permission the protocol and it does not create exclusive relay rights."
+description: "The relayer registry supports app discovery and relayer public-key distribution. It does not permission the protocol and it does not create exclusive relay rights."
 ---
 
-- [Relayer Registration](/relayer-registry)
+- [Relayer Registration](https://parly.fi/relayer)
 - [Run a Relayer](/relayers)
 - [View Relayer Source](https://github.com/Parlyfi/parly-relayer)
 
 ## What the registry is for
 
-The official frontend needs to know which relayer execution addresses are officially discoverable and which relayer public keys it may encrypt bundles to. That is what the registry does.
+The Parly App needs to know which relayer execution addresses are discoverable and which relayer public keys it may encrypt bundles to. That is what the registry does.
 
 ## Registry policy
 
-The official Parly registry supports a maximum of 10 live relayers.
+The Parly registry supports a maximum of 10 live relayers.
 
-Registration is automatic if validation passes and a slot is available. Inactive relayers are removed from official live discovery so slots can reopen while keeping the registry lean and operator-grade.
+Registration is automatic if validation passes and a slot is available. Inactive relayers are removed from live discovery so slots can reopen while keeping the registry lean and operator-grade.
 
 ## Register a relayer
 
@@ -40,14 +40,14 @@ Registration succeeds automatically if:
 ## Registry states
 
 **Verified**\
-Live in official frontend discovery.
+Live in app discovery.
 
 **Inactive**\
-Previously live, now removed from official discovery because of inactivity, operator withdrawal, manual disable action, or failed health expectations.
+Previously live, now removed from discovery because of inactivity, operator withdrawal, manual disable action, or failed health expectations.
 
 **Rejected**\
 Failed automatic validation.
 
 ## Important note
 
-Official listing improves public frontend discovery only. It does not control whether the protocol is open, and it does not prevent advanced users, SDK users, or custom frontend operators from targeting independent relayers directly. Official listing improves public frontend discovery only. It does not control whether the protocol is open, and it does not prevent advanced users, SDK users, or custom frontend operators from targeting independent relayers directly.
+Listing improves public app discovery only. It does not control whether the protocol is open, and it does not prevent advanced users, SDK users, or custom frontend operators from targeting independent relayers directly.

@@ -2,7 +2,7 @@
 title: "Architecture Overview"
 ---
 
-Parly is designed as a focused privacy execution stack rather than a single frontend with hidden assumptions. This page explains the core system components, how they relate to one another, and why the product is structured this way.
+Parly is a private stablecoin execution system built around a hub-and-spoke architecture. This page explains the major components, how they work together, and how Parly supports private execution, recovery, verification, relayer operation, developer integration, and AI-agent workflows.
 
 - [Open App](https://parly.fi/app)
 - [View Relayer Source](https://github.com/Parlyfi/parly-relayer)
@@ -10,7 +10,8 @@ Parly is designed as a focused privacy execution stack rather than a single fron
 - [View MCP Source](https://github.com/Parlyfi/parly-mcp)
 
 ## High-level system design
-Parly uses a hub-and-spoke model with Tempo as the privacy hub.
+
+Parly uses Tempo as the payment and settlement hub, with supported EVM networks connected through a spoke model.
 
 At a high level, the stack consists of:
 
@@ -24,20 +25,23 @@ At a high level, the stack consists of:
 - optional analytics infrastructure
 
 ## Network topology
+
 The live network set is:
 
-- Tempo as the privacy and settlement hub
+- Tempo as the payment and settlement hub
 - Ethereum
 - Arbitrum
 - Base
 - BSC
 
-These supported spoke networks route into Tempo for shielding and receive stablecoin payouts from Tempo on outbound delivery.
+Supported spoke networks route into Tempo for shielding and receive stablecoin payouts from Tempo on outbound delivery. This keeps private execution, recovery, and verification centered within one consistent operating model.
 
 ## Web application
 
 The web application is the user-facing product surface.
+
 It handles:
+
 - wallet connection
 - authentication
 - private-state recovery
@@ -48,14 +52,17 @@ It handles:
 - verification handoff
 
 ## Contracts and circuits
+
 The contract layer holds the settlement logic for shielding, private execution, and hub-and-spoke routing. The circuit layer defines the proof system used for private execution and keeps the execution model bounded and predictable.
 
-Parly uses a fixed padded execution model at launch. That stability matters because frontend, relayer, SDK, and contract boundaries all need the same execution shape.
+Parly uses a fixed padded execution model so the app, relayer, SDK, contracts, and circuits can share one consistent execution shape.
 
 ## Relayer
-The relayer is the private execution daemon.
+
+The relayer is the private execution runtime.
 
 It:
+
 - receives encrypted relay requests
 - decrypts only the requests addressed to it
 - validates and submits execution
@@ -63,18 +70,22 @@ It:
 - reconciles pending outcomes later
 
 ## Indexer
+
 The indexer is the public data layer.
 
 It serves:
+
 - activity history
 - verification queries
 - provenance joins where available
 - analytics surfaces
 
 ## SDK
+
 The SDK is the developer integration layer.
 
-It mirrors:
+It supports:
+
 - deterministic authentication
 - recovery identity derivation
 - note handling
@@ -83,18 +94,21 @@ It mirrors:
 - outcome handling
 
 ## MCP server
-The MCP server is the bounded agent tooling layer.
+
+The MCP server is the bounded AI-agent tooling layer.
 
 It allows:
+
 - note recovery
 - immediate private payment execution
 - session-shaped machine-payment flows through the MPP-compatible adapter when enabled
 
-## Repository and deployment posture
-Parly maintains one private canonical monorepo as the internal source of truth. Public code distribution is split by role into:
+## Public integration surfaces
 
-- a public relayer repo for operators
-- a public SDK repo for developers
-- a public MCP repo for agent integrations
+Parly provides public integration surfaces for operators, developers, and agent builders, including:
 
-A realistic production deployment is not frontend-only. Depending on the operated surface, the broader stack may include the web app, relayer runtime, indexer, MCP server, and optional analytics services.
+- the relayer repository for operators
+- the SDK repository for developers
+- the MCP repository for agent integrations
+
+These surfaces allow teams and builders to operate, integrate, and extend Parly without rebuilding the private execution model from scratch.
