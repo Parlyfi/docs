@@ -12,7 +12,7 @@ description: "Use this page to choose the right entry point into Parly, whether 
 
 Start with the App.
 
-That is the user-facing control surface for wallet connection, authentication, shielding, private execution, activity review, selective receipts, and verification handoff. It is where product truth becomes usable.
+The App is the user-facing control surface for wallet connection, authentication, shielding, private execution, activity review, selective receipts, and verification handoff. This is where users interact with Parly directly.
 
 - [Open App](https://parly.fi/app)
 - [Using the App](/app)
@@ -21,7 +21,7 @@ That is the user-facing control surface for wallet connection, authentication, s
 
 Start with the relayer docs and the public relayer source.
 
-Parly ships a real relayer runtime. Operators do not need to design their own private-execution daemon from first principles before participating.
+Parly ships a relayer runtime for operators who want to participate in private execution infrastructure.
 
 - [Run a Relayer](/relayers)
 - [View Relayer Source](https://github.com/Parlyfi/parly-relayer)
@@ -32,9 +32,9 @@ Parly ships a real relayer runtime. Operators do not need to design their own pr
 
 Start with the SDK.
 
-The SDK is the developer integration surface for deterministic authentication, recovery identity derivation, note handling, execution request construction, exact approval discipline, and outcome handling. 
+The SDK is the developer integration surface for deterministic authentication, recovery identity derivation, note handling, execution request construction, exact approval discipline, and outcome handling.
 
-This is the correct entry point for backend services, automation, service operators, and integrations that want protocol-accurate behavior.
+This is the correct entry point for backend services, automation, service operators, and integrations that need reliable Parly-compatible behavior.
 
 - [View SDK Source](https://github.com/Parlyfi/parly-sdk)
 - [Parly SDK](/sdk)
@@ -49,16 +49,17 @@ The MCP server exists for bounded agent workflows. It exposes agent-owned tools,
 This is the right path for copilots, service agents, and headless automation.
 
 - [View MCP Source](https://github.com/Parlyfi/parly-mcp)
-- [Parly MCP Server](/mcp)
+- [Parly MCP Server](/mcp-server)
 - [View SDK Source](https://github.com/Parlyfi/parly-sdk)
 
 ## I want to understand the system before using it
 
-Start with How Parly Works and Architecture Overview.
+Start with How Parly Works, the Whitepaper, and Architecture Overview.
 
-Those pages explain the launch surface, recovery model, selective verification, relay model, SDK/MCP boundary, and the role of each major component.
+These pages explain Parly’s thesis, recovery model, selective verification, relay model, SDK/MCP boundary, and major system components.
 
 - [How Parly Works](/)
+- [Whitepaper](/whitepaper)
 - [Architecture Overview](/architecture)
 
 ## Public surfaces
@@ -69,7 +70,7 @@ Those pages explain the launch surface, recovery model, selective verification, 
 
 **Relayer** The operator runtime for private execution.
 
-**Registry** The official discovery surface for relayer listing in the public app.
+**Registry** The discovery surface for relayer listing in the public app.
 
 **SDK** The developer integration layer.
 
