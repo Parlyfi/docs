@@ -25,6 +25,7 @@
             "group": "Getting Started",
             "pages": [
               "index",
+              "whitepaper",
               "quickstart"
             ]
           },
@@ -56,6 +57,10 @@
   },
   "navbar": {
     "links": [
+      {
+        "label": "Whitepaper",
+        "href": "/whitepaper"
+      },
       {
         "label": "Open App",
         "href": "https://parly.fi/app"
