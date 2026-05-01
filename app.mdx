@@ -1,6 +1,6 @@
 ---
 title: "Using the App"
-description: "The Parly App is the primary user-facing surface for shielding, recovery, private execution, activity review, and selective verification. "
+description: "The Parly App is the primary user-facing surface for shielding, recovery, private execution, activity review, and selective verification."
 ---
 
 - [Open App](https://parly.fi/app)
@@ -13,11 +13,11 @@ The App is the main control surface for Parly users. It is where a user connects
 
 ## Connect and authenticate
 
-Parly does not treat wallet connection and private-state access as the same thing.
+Parly separates wallet connection from private-state access.
 
 Connecting a wallet gives the application an active address. Authenticating that wallet activates private-state recovery and execution by asking the wallet to sign a fixed authentication message. That message is used to derive the recovery identity used for private note recovery.
 
-In practical terms, the flow is:
+The flow is:
 
 1. Connect wallet
 2. Authenticate
@@ -33,7 +33,7 @@ There are two shielding paths:
 - direct shielding on Tempo
 - spoke-origin shielding into Tempo
 
-Both paths are part of the live product surface. The Shield experience should guide the user through network selection, asset selection, amount entry, approval where required, confirmation, and confirmed private-balance entry.
+The Shield flow guides the user through network selection, asset selection, amount entry, approval where required, confirmation, and confirmed private-balance entry.
 
 ## Execute
 
@@ -43,12 +43,15 @@ It supports:
 
 - single send
 - batch send
+- CSV-driven payout flows
 - private same-network payouts on Tempo
 - private cross-network stablecoin-only payouts to supported spokes
 - private relay by default
 - self-relay fallback
 
-The interface must keep submitted, pending, confirmed, and failed visually distinct. 
+For multi-recipient workflows, batch send and CSV-driven payouts support payroll, vendor disbursement, contributor payments, and structured treasury movement.
+
+The App clearly separates submitted, pending, confirmed, and failed states.
 
 ## Ledger and Compliance
 
@@ -56,17 +59,17 @@ The App includes a Ledger and Compliance surface directly below the main executi
 
 The compliance model is selective by design. A user can review one payout scope at a time, export a lane-scoped record, and hand that record to a counterparty, auditor, or exchange without exposing the wider private execution set.
 
-This surface should be treated as:
+This surface supports:
 
-- a review surface
-- a receipt surface
-- a proof-preparation surface
+- activity review
+- scoped receipts
+- proof preparation
 
 ## Scoped receipts
 
 A scoped receipt is a record for one disclosed payout lane.
 
-Depending on what is truthfully available, a scoped receipt may include confirmed settlement facts, the disclosed payout scope, local note relationship details where appropriate, and provenance details where the source and settlement path can be linked honestly.
+A scoped receipt may include confirmed settlement facts, the disclosed payout scope, local note relationship details where appropriate, and provenance details where the source and settlement path can be linked accurately.
 
 ## Verification handoff
 
@@ -79,4 +82,4 @@ The typical handoff is:
 
 ## Product behavior
 
-The App is designed to keep execution, review, and proof connected. Shielding, sending, history, receipts, and verification handoff belong to one coherent operating surface.
+The App keeps execution, review, and proof connected. Shielding, sending, history, receipts, and verification handoff belong to one coherent operating surface.
