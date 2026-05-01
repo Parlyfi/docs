@@ -181,7 +181,19 @@ This is where private payments become enterprise-grade. A treasury operator shou
 
 Parly is built for that level of use.
 
-### 4.8 Agentic Settlement
+### 4.8 Private Relay Transport
+
+Parly’s privacy model also depends on how execution instructions move.
+
+If a user must always submit their own private execution directly from the same public wallet context, the transport path can weaken the privacy experience. Parly addresses this through private relay transport using Waku and independent relayers.
+
+A user can encrypt an execution request to a selected relayer and broadcast it through the relay communication layer. The relayer can decrypt only the bundle intended for it, validate the request, and submit the execution. This gives Parly a stronger execution path for private payments while preserving self-relay as a fallback for advanced users.
+
+This matters because privacy is not only about the proof system. It is also about the execution path around the proof.
+
+Zero-knowledge proofs protect private state. Waku and relayers help protect how execution requests reach the chain. Together, they give Parly a more complete private execution architecture.
+
+### 4.9 Agentic Settlement
 
 Parly’s cryptographic model is built for AI agents.
 
@@ -195,7 +207,7 @@ An AI agent should be able to settle value without exposing the full economic lo
 
 Parly is built for that agentic future.
 
-### 4.9 The Result
+### 4.10 The Result
 
 Parly combines the primitives required for a new class of stablecoin infrastructure:
 
@@ -206,6 +218,7 @@ Parly combines the primitives required for a new class of stablecoin infrastruct
 - A Verify Portal for mathematically scoped proof.
 - Omnichain continuity across connected EVM environments.
 - ZK batch settlement and CSV payroll flows.
+- Waku private relay transport for encrypted execution requests.
 - Agent-ready payment infrastructure through MCP and MPP-compatible flows.
 
 Parly re-architects stablecoin execution for privacy, proof, recovery, and the agentic economy.
@@ -214,7 +227,7 @@ Parly re-architects stablecoin execution for privacy, proof, recovery, and the a
 
 Parly uses Tempo as the payment hub because Tempo is built for payment scale.
 
-Tempo is a payments-first chain designed around stablecoins, predictable low fees, stablecoin fee payment, dedicated payment lanes, EVM compatibility, sub-second finality, and 100K\+ TPS scale ambition. Its public materials also position it around global payouts, payroll, remittances, microtransactions, and agentic payments.
+Tempo is a payments-first chain designed around stablecoins, predictable low fees, stablecoin fee payment, dedicated payment lanes, EVM compatibility, sub-second finality, and 100K+ TPS scale ambition. Its public materials also position it around global payouts, payroll, remittances, microtransactions, and agentic payments.
 
 That makes Tempo a powerful base for Parly.
 
