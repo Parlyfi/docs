@@ -8,9 +8,15 @@ description: "Parly includes an MCP server for agentic workflows. It exposes bou
 - [How Parly Works](/)
 - [Run a Relayer](/relayers)
 
+## What the MCP server is
+
+The Parly MCP Server gives AI agents a bounded way to recover private state and execute shielded payments through Parly.
+
+It is designed for agent-owned workflows, with clear separation between agent credentials, relayer infrastructure, and treasury authority.
+
 ## Security model
 
-The MCP server must run with an agent key only. It must not inherit relayer execution power, relayer sealed-box secrets, or treasury control.
+The MCP server should run with an agent credential only. It should not inherit relayer execution power, relayer sealed-box credentials, or treasury control.
 
 This is one of the most important safety boundaries in the Parly stack.
 
@@ -28,15 +34,15 @@ When MPP compatibility is enabled, it may also support:
 
 ## recover\_largest\_note
 
-This tool recovers the largest live note controlled by the configured agent key for a given asset. It is useful for agents that need to reason about current private spendable balance before attempting execution.
+This tool recovers the largest live note controlled by the configured agent credential for a given asset. It is useful for agents that need to reason about current private spendable balance before attempting execution.
 
 ## execute\_shielded\_payment
 
-This tool executes a private Parly payment from notes controlled by the configured agent key. It is the direct immediate execution path for agent workflows.
+This tool executes a private Parly payment from notes controlled by the configured agent credential. It is the direct immediate execution path for agent workflows.
 
 ## mpp\_create\_session
 
-This tool creates an MPP-compatible session descriptor around the current agent-owned execution path. It is useful when an agent or service wants a machine-readable spending lane without changing protocol law.
+This tool creates an MPP-compatible session descriptor around the current agent-owned execution path. It is useful when an agent or service wants a machine-readable spending lane without changing the core settlement model.
 
 ## mpp\_settle\_session\_payment
 
@@ -44,13 +50,13 @@ This tool settles a Parly payment from a previously created session descriptor. 
 
 ## Runtime behavior
 
-When the MCP server starts, it should make the active key scope and adapter state explicit. That includes:
+When the MCP server starts, it should make the active credential scope and adapter state explicit. That includes:
 
-- whether it is running with the agent key only
+- whether it is running with the agent credential only
 - whether MPP compatibility is enabled
 - which service name and version are active when the adapter is used
 
-### Who it is for
+## Who it is for
 
 The MCP server is intended for:
 
