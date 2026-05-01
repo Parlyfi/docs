@@ -38,6 +38,12 @@
             ]
           },
           {
+            "group": "Campaigns",
+            "pages": [
+              "waitlist-airdrop"
+            ]
+          },
+          {
             "group": "Operators",
             "pages": [
               "relayers",
@@ -60,6 +66,10 @@
       {
         "label": "Whitepaper",
         "href": "/whitepaper"
+      },
+      {
+        "label": "Waitlist",
+        "href": "/waitlist-airdrop"
       },
       {
         "label": "Open App",

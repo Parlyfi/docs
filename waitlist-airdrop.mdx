@@ -1,0 +1,223 @@
+---
+title: "Waitlist and Airdrop"
+description: "Learn how Parly waitlist points, shield points, referrals, leaderboard status, and future airdrop eligibility work."
+---
+
+- [Join Waitlist](https://parly.fi/waitlist)
+- [Read the Whitepaper](/whitepaper)
+- [How Parly Works](/)
+
+## Overview
+
+The Parly waitlist is the early network formation layer for the protocol.
+
+It is designed to recognize users who help build the network before full public activation: early community members, verified social participants, referrers, shielders, builders, and ecosystem supporters.
+
+The campaign has two major point categories:
+
+- **Waitlist Points** for verified identity, social participation, wallet bonding, and referrals
+- **Shield Points** for eligible shield activity and deposit volume tracked through the campaign system
+
+Together, these create a user’s total campaign score:
+
+```txt
+Total Parly Points = Waitlist Points + Shield Points
+```
+
+Points are used for leaderboard ranking, campaign status, and future eligibility calculations. Points are not transferable tokens, do not trade on-chain, and do not by themselves guarantee a final allocation. Final claim mechanics, allocation rules, and eligibility requirements will be published before the airdrop and TGE.
+
+## Waitlist profile
+
+A waitlist profile is the user’s campaign identity inside Parly.
+
+A complete profile may include:
+
+- X account connection and follow verification
+- Discord account connection and server verification
+- a primary wallet for campaign identity and future claim routing
+- referral code and referral history
+- waitlist points
+- shield points
+- leaderboard tier and rank
+
+The goal is simple: one user, one campaign profile, one primary claim identity.
+
+## Social verification
+
+Social verification helps Parly reward real early participants and reduce low-quality campaign activity.
+
+The core social tasks are:
+
+| Task | Points | Purpose |
+|---|---:|---|
+| Link X and verify follow | 10 | Confirms access to official Parly updates |
+| Link Discord and verify server membership | 10 | Confirms community participation |
+| Connect and bond primary wallet | 10 | Establishes the campaign identity used for claim routing |
+
+X and Discord account-age checks may apply. Accounts that do not meet campaign integrity requirements may be ineligible for waitlist participation or future rewards.
+
+If a user unfollows Parly on X or leaves the required Discord server during the campaign, their profile may become inactive until the missing requirement is restored.
+
+## Primary wallet and claim identity
+
+The primary wallet is the wallet attached to a user’s waitlist profile for campaign identity and future claim routing.
+
+This wallet matters because the airdrop must resolve to one identity per user. Parly does not support duplicate claims across multiple waitlist profiles for the same participant.
+
+A wallet can only belong to one campaign profile. If a wallet is already attached to one profile, it cannot be reused to create another independent campaign identity.
+
+Before airdrop claim opens, Parly will publish final claim instructions, supported networks, and any required claim steps.
+
+## Referrals
+
+Every active waitlist profile can receive a referral code.
+
+A referral only becomes verified when the referred user completes the required campaign steps. This prevents empty signups from counting as real network growth.
+
+Referral status may appear as:
+
+| Status | Meaning |
+|---|---|
+| Pending | The referred user has joined but has not completed the required tasks |
+| Verified | The referred user completed the required campaign tasks |
+| Inactive | The referred user no longer meets campaign requirements |
+
+Each verified referral earns:
+
+```txt
+1 verified referral = 1 Waitlist Point
+```
+
+Referrals are designed to reward distribution, not spam. Low-quality, automated, duplicate, or abusive referral behavior may be removed from leaderboard calculations.
+
+## Shield Points
+
+Shield Points recognize eligible shield activity and stablecoin volume during the campaign.
+
+The campaign ratio is:
+
+```txt
+$100 in eligible shield activity = 1 Shield Point
+```
+
+For example:
+
+| Eligible shield activity | Shield Points |
+|---:|---:|
+| $100 | 1 |
+| $1,000 | 10 |
+| $5,000 | 50 |
+| $10,000 | 100 |
+
+Shield Points are campaign points. They are not yield, interest, rewards paid in real time, or a promise of token allocation. They are used to measure eligible participation for leaderboard and future campaign calculations.
+
+## Off-chain tracking and privacy
+
+The waitlist campaign is tracked off-chain.
+
+Shield Points are also calculated off-chain from eligible campaign activity. This protects the product experience while keeping the campaign flexible, auditable, and separate from the protocol’s private execution layer.
+
+Parly may index public deposit or shield-entry events for campaign accounting, but private payout details, private recipient relationships, and private treasury paths are not made public by the leaderboard. The leaderboard is a campaign surface, not a full view into a user’s private Parly activity.
+
+This means users can participate in shield mining without turning their full private execution history into a public marketing surface.
+
+## Leaderboard
+
+The leaderboard shows campaign progress across participants.
+
+A leaderboard row may include:
+
+- rank
+- public identity
+- tier
+- Waitlist Points
+- Shield Points
+- Total Parly Points
+
+A user’s public identity may be shown using the strongest available display identity, such as X handle, campaign username, or shortened wallet address. Parly may limit display names that are misleading, impersonating, offensive, or abusive.
+
+## Tiers
+
+Parly uses tiers to make campaign progress easy to understand.
+
+| Tier | Total Parly Points |
+|---|---:|
+| Bronze | 0 to 99 |
+| Silver | 100 to 999 |
+| Gold | 1,000 to 9,999 |
+| Platinum | 10,000+ |
+
+Tiers are campaign status markers. They help participants understand their relative progress and leaderboard position.
+
+## Ghost shielders
+
+A user may interact with Parly contracts before completing a waitlist profile.
+
+If eligible shield activity is detected before a user completes the waitlist flow, Parly may display that address as an unverified or wallet-only participant until the user connects the required social accounts and bonds a primary wallet.
+
+To become eligible for future claim routing, the user must complete the required waitlist profile steps.
+
+## Testnet and mainnet accounting
+
+Testnet participation may be used to measure early product engagement, user learning, and campaign momentum.
+
+Mainnet campaign accounting will be treated separately from testnet activity. Shield Points connected to testnet-faucet activity may reset before mainnet accounting begins.
+
+This protects the campaign from fake volume and preserves a fairer path for real participation.
+
+## Airdrop eligibility
+
+The future Parly airdrop is intended to reward early conviction, useful participation, and network formation.
+
+Eligibility may consider:
+
+- completed waitlist profile
+- X follow verification
+- Discord server verification
+- primary wallet bond
+- verified referrals
+- eligible Shield Points
+- leaderboard status
+- anti-sybil checks
+- compliance and campaign integrity review
+
+Final eligibility criteria, claim windows, supported networks, and distribution rules will be announced before the airdrop.
+
+## TGE path
+
+The airdrop is part of Parly’s broader path toward TGE.
+
+The expected sequence is:
+
+1. Protocol testnet
+2. Waitlist and marketing phase
+3. Protocol mainnet on Tempo
+4. Omnichain expansion
+5. Airdrop
+6. TGE
+7. Expansion into new privacy-native products
+
+This sequence may be updated as the protocol, ecosystem, and launch conditions evolve.
+
+## Important campaign rules
+
+Parly may remove, reduce, freeze, or review points connected to:
+
+- duplicate profiles
+- fake referrals
+- automated signups
+- wallet reuse across multiple profiles
+- manipulated shield activity
+- social accounts that fail integrity checks
+- users who stop meeting required campaign conditions
+- activity that violates campaign rules or applicable requirements
+
+These controls protect real participants and preserve the integrity of the campaign.
+
+## Summary
+
+The Parly waitlist and airdrop campaign is designed to reward early network formation.
+
+Waitlist Points recognize verified participation and referrals. Shield Points recognize eligible stablecoin activity. The leaderboard turns that participation into visible campaign status. The airdrop is intended to reward the users who help establish Parly before full ecosystem activation.
+
+Parly is building private stablecoin infrastructure for the agentic economy. The waitlist is how the earliest users help form that network.
