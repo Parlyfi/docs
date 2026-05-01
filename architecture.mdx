@@ -18,6 +18,8 @@ At a high level, the stack consists of:
 - the web application
 - on-chain contracts
 - zero-knowledge circuits
+- LayerZero transport for supported omnichain routes
+- Waku transport for private relay communication
 - the relayer runtime
 - the indexer
 - the SDK
@@ -56,6 +58,14 @@ It handles:
 The contract layer holds the settlement logic for shielding, private execution, and hub-and-spoke routing. The circuit layer defines the proof system used for private execution and keeps the execution model bounded and predictable.
 
 Parly uses a fixed padded execution model so the app, relayer, SDK, contracts, and circuits can share one consistent execution shape.
+
+## LayerZero transport
+
+LayerZero supports the omnichain movement of supported stablecoin flows between Tempo and connected EVM routes. Parly keeps private execution centered on Tempo while allowing supported networks to participate through a coherent hub-and-spoke model.
+
+## Waku transport
+
+Waku supports private relay communication between users and relayers. It helps encrypted execution requests move through a transport layer without making direct user submission the only path for private execution.
 
 ## Relayer
 
