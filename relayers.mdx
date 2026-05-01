@@ -1,20 +1,20 @@
 ---
 title: "Run a Parly Relayer"
-description: "Parly ships a full relayer runtime as part of the standard product stack. This page explains what a relayer does, what an operator is responsible for, how to get the source, and how to run the runtime in production."
+description: "Parly ships a relayer runtime for operators who want to support private execution. This page explains what a relayer does, what an operator is responsible for, and how to run the runtime."
 ---
 
 - [Relayer Registration](https://parly.fi/relayer)
 - [View Relayer Source](https://github.com/Parlyfi/parly-relayer)
 - [Operator Quickstart](https://github.com/Parlyfi/parly-relayer)
-- [Run a Relayer](/relayers)
+- [Relayer Registry](/relayer-registry)
 
 ## What a relayer is
 
-A Parly relayer is the runtime that receives encrypted private execution requests, decrypts only the requests addressed to it, validates whether they are safe and economically executable, submits valid executions, and keeps uncertain outcomes honest until they are resolved.
+A Parly relayer is the runtime that receives encrypted private execution requests, decrypts only the requests addressed to it, validates whether they are safe and economically executable, submits valid executions, and keeps uncertain outcomes clear until they are resolved.
 
-## What Parly already ships
+## What Parly ships
 
-Parly already ships a real relayer application. Independent operators do not need to build relay infrastructure from scratch to participate. The shipped runtime includes the relayer service itself, key generation flow, encrypted bundle handling, execution validation, submission ,and pending-state reconciliation.
+Parly ships a relayer application for independent operators. The runtime includes the relayer service, key generation flow, encrypted bundle handling, execution validation, submission, and pending-state reconciliation.
 
 ## Source and distribution
 
@@ -25,9 +25,10 @@ Operators should:
 1. open the public relayer source
 2. follow the operator quickstart
 3. configure the relayer environment
-4. run the relayer runtime
-5. run the pending reconciler beside it
-6. register through the relayer registry if they want official frontend discovery
+4. generate the sealed-box keypair
+5. run the relayer runtime
+6. run the pending reconciler beside it
+7. register through the relayer registry if they want app discovery
 
 ## What the relayer does in practice
 
@@ -53,22 +54,6 @@ A production relayer operator should have:
 - secure secret storage
 - the pending reconciler running beside the main relayer process
 
-## Quickstart
-
-The relayer operator flow is straightforward:
-
-Install dependencies, configure the environment, generate the relayer keypair, start the relayer runtime, start the pending reconciler, and then register the relayer for official frontend discovery if desired.
-
-A typical operator journey looks like this:
-
-- open the public relayer source
-- copy `.env.example` to `.env`
-- generate the sealed-box keypair
-- configure execution address, RPC, Waku, and runtime thresholds
-- start the relayer
-- start the pending reconciler
-- open `/relayer` and register for official discovery
-
 ## Required configuration
 
 At minimum, a relayer operator needs:
@@ -80,14 +65,14 @@ At minimum, a relayer operator needs:
 - profitability and retry settings
 - pending reconciliation file paths
 
-## Official discovery and listing
+## Discovery and listing
 
-The official relayer registry exists for two purposes:
+The relayer registry exists for two purposes:
 
-- official frontend discovery
+- app discovery
 - public-key distribution for bundle encryption
 
-A relayer can operate without being listed, but listing makes it visible to the public app and allows the official frontend to encrypt to it cleanly.
+A relayer can operate without being listed, but listing makes it visible to the public app and allows the app to encrypt relay bundles to it cleanly.
 
 ## Reliability expectations
 
@@ -102,6 +87,6 @@ A relayer operator is expected to:
 
 ## Independent operation
 
-If you want official frontend discovery, register through the relayer registry.
+If you want public app discovery, register through the relayer registry.
 
-If you do not need official discovery, you can still run the relayer independently and integrate it through your own frontend or tooling.
+If you do not need public app discovery, you can still run the relayer independently and integrate it through your own frontend or tooling.
