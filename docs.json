@@ -40,7 +40,7 @@
           {
             "group": "Campaigns",
             "pages": [
-              "waitlist-airdrop"
+              "airdrop"
             ]
           },
           {
@@ -68,8 +68,8 @@
         "href": "/whitepaper"
       },
       {
-        "label": "Waitlist",
-        "href": "/waitlist-airdrop"
+        "label": "Airdrop",
+        "href": "/airdrop"
       },
       {
         "label": "Open App",
