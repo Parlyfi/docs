@@ -89,7 +89,8 @@
   "footer": {
     "socials": {
       "github": "https://github.com/Parlyfi/parly-sdk",
-      "x": "https://x.com/ParlyFi"
+      "x": "https://x.com/ParlyFi",
+      "website": "https://parly.fi"
     }
   },
   "background": {
