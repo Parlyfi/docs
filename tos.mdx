@@ -1,0 +1,324 @@
+---
+title: "Terms of Service"
+description: "Terms for using Parly, including the App, Privacy Links, Verify, relayer surfaces, campaign surfaces, SDK, MCP server, and public documentation."
+---
+
+Effective date: June 29, 2026
+
+These Terms of Service govern access to and use of Parly, including the Parly App, Privacy Links, Verify, relayer surfaces, campaign surfaces, SDK, MCP server, public documentation, and related interfaces.
+
+By accessing or using Parly, connecting a wallet, authenticating a wallet, creating a Privacy Link, paying through a Privacy Link, running a relayer, using Verify, using the SDK or MCP server, or participating in campaign surfaces, you agree to these Terms.
+
+If you do not agree, do not use Parly.
+
+## 1. What Parly is
+
+Parly is private stablecoin execution infrastructure.
+
+Parly helps users:
+
+- shield supported stablecoins into private balance;
+- send supported stablecoins privately;
+- receive supported stablecoin payments through Privacy Links;
+- recover private state through wallet-controlled cryptographic recovery;
+- verify a disclosed payout or invoice settlement through a scoped verification flow;
+- integrate with private payment workflows through the SDK and MCP server;
+- operate relayer infrastructure where supported.
+
+Parly is not a bank, broker, exchange, custodian, payment processor, money transmitter, investment adviser, tax adviser, legal adviser, or escrow agent.
+
+## 2. Non-custodial protocol
+
+Parly is designed as a non-custodial protocol and application layer.
+
+You are responsible for:
+
+- your wallets;
+- your private keys and seed phrases;
+- the addresses you provide;
+- the transactions you sign;
+- the networks and assets you choose;
+- your compliance with applicable laws;
+- your tax, accounting, and reporting obligations.
+
+Parly does not take custody of your private keys and cannot recover a wallet, reverse a blockchain transaction, restore a lost seed phrase, or guarantee recovery from an address you do not control.
+
+## 3. Eligibility and sanctions
+
+You may use Parly only if you are legally permitted to do so.
+
+You must not use Parly if:
+
+- you are subject to applicable sanctions, blocking, or restricted-party rules;
+- you are located in, ordinarily resident in, organized in, or operating from a jurisdiction where your use of Parly is prohibited;
+- your use would violate applicable law, regulation, court order, sanctions program, export-control rule, or other legal restriction;
+- you are using Parly for fraud, money laundering, sanctions evasion, terrorist financing, ransomware, theft, trafficking, illegal goods or services, market manipulation, or other unlawful activity.
+
+Parly may use jurisdiction, sanctions, route, wallet, asset, link, and policy checks to block or restrict access to product surfaces. A block may apply to link creation, link publication, payment routes, refund wallets, wallet authentication, campaign participation, relayer discovery, or other surfaces.
+
+If a refund wallet, route, or address fails a policy check, you may need to use a different eligible wallet or route before proceeding.
+
+## 4. Wallet authentication and recovery
+
+Some Parly flows require a wallet signature.
+
+Wallet signatures may be used to:
+
+- authenticate wallet ownership;
+- derive or unlock wallet-controlled recovery identity;
+- publish or manage Privacy Links;
+- recover link-scoped payer history;
+- authorize a supported payment or refund flow;
+- confirm eligibility for campaign or admin-gated surfaces.
+
+You should review wallet signature prompts carefully. Do not sign messages or transactions you do not understand.
+
+Parly recovery is designed around wallet-controlled cryptographic identity and chain-visible recovery data. Browser storage may improve convenience, but it is not the source of truth for private-state recovery.
+
+## 5. Supported assets, networks, and routes
+
+Parly supports only the assets, networks, and routes shown by the application or documented as active.
+
+Supported route availability may change based on:
+
+- network conditions;
+- route liquidity;
+- relayer availability;
+- provider availability;
+- policy checks;
+- contract configuration;
+- maintenance;
+- legal or security restrictions.
+
+If a route is unavailable, do not send funds to an address or contract unless the application has generated a valid current instruction for that route.
+
+## 6. Privacy Links
+
+Privacy Links are shareable Parly payment pages.
+
+There are two main Privacy Link types:
+
+- profile links for open-ended payments;
+- invoice links for a specific requested payment.
+
+Creators are responsible for the public information they choose to display on a Privacy Link, including names, profile images, cover images, descriptions, websites, X profile links, invoice details, business references, and other link metadata.
+
+Public link metadata may be visible to anyone who opens the link.
+
+Parly may restrict, reserve, pause, remove, or require renaming of handles, slugs, assets, images, descriptions, links, or invoices that are misleading, impersonating, abusive, illegal, high-risk, reserved, infringing, or otherwise inconsistent with these Terms.
+
+If a public handle or slug is restricted, affected users may be required to rename or republish. Parly does not guarantee that any handle, slug, display name, profile, or invoice URL will remain available forever.
+
+## 7. Payer name, references, and reconciliation
+
+For Privacy Link payments, a payer may optionally provide a display name, reference, memo, or similar payment detail where the product supports it.
+
+This information is meant to help the link creator reconcile a payment.
+
+If provided, payer-entered information may be visible to:
+
+- the Privacy Link creator;
+- the payment or invoice record;
+- a receipt;
+- a verification result where the receipt token or verification link intentionally discloses it.
+
+Do not put private, sensitive, regulated, or unnecessary personal information into payer reference fields.
+
+Parly does not verify the truth of payer-entered names, references, memos, or business terms.
+
+## 8. Receipts and Verify
+
+Parly receipts and Verify are scoped disclosure tools.
+
+A receipt or Verify result may confirm that a specific payment, invoice settlement, or payout scope settled through Parly.
+
+A receipt or Verify result does not confirm:
+
+- delivery of goods or services;
+- identity of a merchant, payer, recipient, or counterparty beyond disclosed fields;
+- the truth of invoice terms;
+- the quality, legality, or performance of any off-chain transaction;
+- the full private ledger or full wallet history of either party.
+
+Invoice verification confirms settlement only. It does not prove that goods or services were delivered, that a counterparty is who they claim to be, or that private business terms are accurate.
+
+Only share receipt tokens, verification links, child keys, or supporting payment details with parties you intend to disclose them to.
+
+## 9. Refund wallets and failed payments
+
+Some one-time deposit and Privacy Link flows require a refund wallet.
+
+Use a wallet you control as the refund wallet. Do not use an exchange, custodial deposit address, or address you cannot sign from unless the product explicitly states that such an address is supported for the refund path.
+
+If a payment fails, expires, is underpaid, overpaid, duplicated, sent with the wrong asset, sent on the wrong network, sent too late, or fails policy checks, the payment may become:
+
+- pending;
+- failed;
+- ignored;
+- manually reviewed;
+- refund-available;
+- unrecoverable.
+
+Refund availability does not mean a paid invoice or completed profile payment is automatically refundable. It refers to failed-payment recovery where the protocol, route, and policy state support it.
+
+The refund claimant may need to prove control of the refund wallet and may need to pay network gas or provider fees to claim a refund.
+
+Parly cannot guarantee recovery if funds are sent to the wrong address, wrong network, unsupported asset, expired instruction, custodial exchange wallet, or an address not generated by the current flow.
+
+## 10. Relayers and execution
+
+Parly may use independent relayers for private execution.
+
+Relayers may:
+
+- receive encrypted execution requests addressed to them;
+- validate supported execution bundles;
+- submit transactions where authorized;
+- participate in ingress and payout flows where supported;
+- earn fees or compensation where configured.
+
+Relayers are independent operators. Parly does not guarantee that every relayer will be online, available, profitable, error-free, or suitable for every route.
+
+You may be able to use self-relay or other execution paths where supported. Availability depends on the product surface and route.
+
+## 11. Fees, gas, and costs
+
+Using Parly may involve costs, including:
+
+- network gas;
+- stablecoin transfer fees;
+- relayer fees;
+- route or provider fees;
+- protocol fees where configured;
+- refund-claim costs;
+- failed or reverted transaction costs.
+
+Fees may vary by route, network, asset, provider, and timing.
+
+You are responsible for reviewing costs before signing transactions or sending funds.
+
+## 12. Campaigns, points, and rewards
+
+Parly may offer waitlist, airdrop, points, referral, shield-mining, or other campaign surfaces.
+
+Campaign participation is subject to eligibility, anti-abuse checks, duplicate-profile controls, policy restrictions, and any campaign-specific rules.
+
+Points, ranks, badges, allocations, referrals, or campaign scores:
+
+- are not money;
+- are not stablecoins;
+- are not securities;
+- are not guaranteed rewards;
+- may be corrected, reduced, removed, frozen, or disqualified for abuse, error, fraud, duplicate identity, ineligible activity, or policy violations.
+
+Unless a separate official claim process is announced, campaign records do not create a right to receive tokens, money, or other value.
+
+## 13. Prohibited conduct
+
+You must not:
+
+- violate applicable law;
+- evade sanctions, route restrictions, or policy checks;
+- use Parly for fraud, theft, laundering, ransomware, scams, illegal goods or services, or harmful activity;
+- impersonate another person, company, project, government, protocol, brand, or community;
+- publish misleading, abusive, infringing, illegal, or unsafe Privacy Link content;
+- attempt to spam, overload, scrape, probe, exploit, reverse engineer, or disrupt Parly systems;
+- attempt to bypass rate limits, eligibility checks, route controls, verification gates, or admin controls;
+- submit false reports or manipulate reports;
+- create duplicate campaign identities or abuse referral systems;
+- use relayer, SDK, MCP, or admin surfaces outside their intended authority.
+
+## 14. Reports, moderation, and restricted names
+
+Parly may support reports for public profiles, invoices, handles, links, images, or other public content.
+
+Reports are used to help identify abuse, impersonation, illegal content, reserved names, unsafe links, or policy issues.
+
+Parly may take action on reported or restricted content, including:
+
+- pausing a link;
+- hiding a public asset;
+- requiring a rename;
+- reserving a name;
+- clearing or rejecting a report;
+- removing content;
+- blocking a route;
+- limiting access to a feature.
+
+Public pages may show redacted status states. Internal review reasons may not be shown publicly.
+
+## 15. User content and public assets
+
+If you upload or publish names, images, profile details, invoice details, descriptions, websites, X links, or other content, you represent that you have the rights and authority to do so.
+
+You grant Parly permission to host, process, display, resize, cache, and distribute that content as needed to operate the product.
+
+Do not upload or publish content that is illegal, infringing, misleading, abusive, malicious, sexually exploitative, hateful, violent, or otherwise unsafe.
+
+Parly may remove or restrict content that appears to violate these Terms or applicable policy.
+
+## 16. Third-party services
+
+Parly may integrate with third-party services, wallets, RPC providers, storage providers, identity providers, notification providers, route providers, bridge or relay providers, and public blockchain networks.
+
+Third-party services may have their own terms, privacy notices, fees, uptime, risks, and restrictions.
+
+Parly is not responsible for third-party service outages, wallet behavior, chain reorganizations, RPC errors, wallet-extension errors, provider restrictions, exchange restrictions, or asset issuer actions.
+
+## 17. No professional advice
+
+Parly does not provide legal, tax, accounting, financial, investment, compliance, or business advice.
+
+You are responsible for obtaining your own professional advice before using Parly for treasury, business, payroll, vendor, contractor, commerce, tax, compliance, or regulated activity.
+
+## 18. Risks
+
+Using blockchain systems involves risk.
+
+Risks include:
+
+- smart contract bugs;
+- wallet compromise;
+- phishing;
+- wrong-network transfers;
+- unsupported asset transfers;
+- route failures;
+- relayer downtime;
+- provider downtime;
+- transaction reverts;
+- lost keys;
+- policy blocks;
+- regulatory changes;
+- stablecoin issuer actions;
+- chain congestion or downtime;
+- user error.
+
+You use Parly at your own risk.
+
+## 19. No warranties
+
+Parly is provided on an "as is" and "as available" basis.
+
+Parly does not warrant that the product will be uninterrupted, secure, error-free, always available, compatible with every wallet, compatible with every jurisdiction, or free from defects.
+
+Parly does not guarantee that any route, relayer, Privacy Link, receipt, verification result, campaign score, refund path, or recovery path will be available at all times.
+
+## 20. Limitation of liability
+
+To the maximum extent permitted by applicable law, Parly and its contributors, maintainers, operators, affiliates, service providers, and licensors are not liable for indirect, incidental, special, consequential, exemplary, punitive, or similar damages, including lost profits, lost revenue, lost business, lost data, lost goodwill, lost funds, lost opportunities, or trading losses.
+
+Nothing in these Terms limits liability that cannot be limited under applicable law.
+
+## 21. Changes to Parly and these Terms
+
+Parly may change, suspend, restrict, or discontinue any feature, route, asset, network, relayer surface, Privacy Link feature, campaign surface, SDK feature, MCP feature, or documentation page.
+
+Parly may update these Terms from time to time.
+
+If changes are material, Parly may provide notice through the app, docs, or other public channels. Continued use after updated Terms are posted means you accept the updated Terms.
+
+## 22. Contact
+
+For product, security, or docs questions, use the public Parly channels linked from the docs footer or the official Parly website.
+
+Do not send private keys, seed phrases, raw secrets, or sensitive personal information through public support channels.
