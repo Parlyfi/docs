@@ -27,9 +27,12 @@ pnpm add @parly/sdk
 import { ParlySDK, ParlyMppAdapter } from "@parly/sdk"
 
 const sdk = new ParlySDK({
-  credential: integrationCredential,
-  tempoChainId,
-  tempoRpcUrl
+  privateKeyHex: process.env.AGENT_PRIVATE_KEY,
+  tempoRpcUrl: process.env.TEMPO_RPC_URL,
+  tempoChainId: 4217,
+  tempoLzEid: 4217,
+  ponderGraphqlUrl: process.env.PONDER_GRAPHQL_URL,
+  proofAssetsBasePath: process.env.PARLY_SDK_ASSETS_PATH
 })
 
 const mpp = new ParlyMppAdapter(sdk, {
@@ -49,6 +52,7 @@ The SDK includes support for:
 - reconstruction of private state from indexed history
 - private execution flow construction
 - direct execution path construction
+- same-chain batch send construction for up to 10 payout lanes
 - exact-amount approval handling
 - clear handling of uncertain or pending execution outcomes
 - optional MPP-compatible wrappers above the same execution engine
@@ -82,6 +86,14 @@ const outcome = await mpp.settleFromSession(
   session
 )
 ```
+
+MPP sessions are counterparty-locked and spend-limit checked before proof work or settlement.
+
+## Batch sends
+
+Use `sendShieldedBatchPayment()` for up to 10 same-chain payout lanes from a recovered private note.
+
+Cross-chain deposits are handled by Parly payment-route APIs. Cross-chain private sends require a dedicated public payout route before they are exposed through the SDK.
 
 ## Who the SDK is for
 

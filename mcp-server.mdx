@@ -25,20 +25,38 @@ This is one of the most important safety boundaries in the Parly stack.
 The MCP server supports:
 
 - recover\_largest\_note
-- execute\_shielded\_payment
+- preflight\_shielded\_payment
+- send\_shielded\_payment
+- preflight\_batch\_shielded\_payment
+- send\_batch\_shielded\_payment
+- execute\_shielded\_payment, as a compatibility alias
 
 When MPP compatibility is enabled, it may also support:
 
 - mpp\_create\_session
+- mpp\_preflight\_session\_payment
 - mpp\_settle\_session\_payment
+
+When the public web API bridge is configured, MCP may also call public-user APIs for Privacy Links, supported cross-chain deposit routes, payment status, payer history, short-lived receipt download URLs, Verify, and relayer registration.
+
+MCP does not expose admin, treasury, signer rotation, route-control, pause, payout-execution, or moderation tools.
 
 ## recover\_largest\_note
 
 This tool recovers the largest live note controlled by the configured agent credential for a given asset. It is useful for agents that need to reason about current private spendable balance before attempting execution.
 
-## execute\_shielded\_payment
+## send\_shielded\_payment
 
-This tool executes a private Parly payment from notes controlled by the configured agent credential. It is the direct immediate execution path for agent workflows.
+This tool sends a private Parly payment from notes controlled by the configured agent credential. It is the direct immediate send path for agent workflows.
+
+## batch private sends
+
+Batch tools support up to 10 same-chain payout lanes from one private note:
+
+- preflight\_batch\_shielded\_payment
+- send\_batch\_shielded\_payment
+
+Cross-chain deposits use the public payment-route APIs. Cross-chain private sends require a dedicated public payout route before they are exposed through MCP.
 
 ## mpp\_create\_session
 
@@ -47,6 +65,8 @@ This tool creates an MPP-compatible session descriptor around the current agent-
 ## mpp\_settle\_session\_payment
 
 This tool settles a Parly payment from a previously created session descriptor. It reuses the same execution engine rather than introducing a separate settlement protocol.
+
+MPP settlement is counterparty-locked and spend-limit checked before proof work or settlement.
 
 ## Runtime behavior
 
