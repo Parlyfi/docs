@@ -1,6 +1,6 @@
 ---
 title: "Run a Parly Relayer"
-description: "Parly ships a relayer runtime for operators who want to support private execution. This page explains what a relayer does, what an operator is responsible for, and how to run the runtime."
+description: "Parly ships a relayer runtime for operators who want to support private payment activity. This page explains relayer duties, operator responsibilities, and how to run the runtime safely."
 ---
 
 - [Relayer Registration](https://parly.fi/relayer)
@@ -10,11 +10,11 @@ description: "Parly ships a relayer runtime for operators who want to support pr
 
 ## What a relayer is
 
-A Parly relayer is the runtime that receives encrypted private execution requests, decrypts only the requests addressed to it, validates whether they are safe and economically executable, submits valid executions, and keeps uncertain outcomes clear until they are resolved.
+A Parly relayer is the runtime that receives encrypted private payment work, decrypts only requests addressed to it, validates whether they are safe and economically executable, submits valid work when enabled, and keeps uncertain outcomes clear until they are resolved.
 
 ## What Parly ships
 
-Parly ships a relayer application for independent operators. The runtime includes the relayer service, key generation flow, encrypted bundle handling, execution validation, submission, and pending-state reconciliation.
+Parly ships a relayer application for independent operators. The runtime includes the relayer service, key generation flow, encrypted bundle handling, execution validation, optional funded one-time deposit work, payout preparation behind safety gates, and pending-state reconciliation.
 
 ## Source and distribution
 
@@ -38,7 +38,9 @@ The relayer is responsible for:
 - decrypting only bundles addressed to its public key
 - validating payload structure
 - validating execution economics
-- submitting valid private executions
+- submitting valid private payment work only when the required live gates are enabled
+- processing funded one-time deposit jobs when explicitly enabled
+- preparing Payout V3 work only behind configured safety gates
 - persisting uncertain post-broadcast outcomes
 - reconciling pending outcomes later
 
@@ -64,6 +66,8 @@ At minimum, a relayer operator needs:
 - Tempo RPC
 - profitability and retry settings
 - pending reconciliation file paths
+
+Phase 3 execution settings are disabled by default. Operators should keep live broadcast, outbound Relay broadcast, payout execution, and fee-payer behavior off unless they have intentionally configured and tested those duties.
 
 ## Discovery and listing
 

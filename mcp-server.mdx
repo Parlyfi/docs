@@ -1,6 +1,6 @@
 ---
 title: "Parly MCP Server"
-description: "Parly includes an MCP server for agentic workflows. It exposes bounded tools over agent-owned execution only and keeps agent, relayer, and treasury responsibilities separate."
+description: "Parly includes an MCP server for agentic workflows. It exposes bounded tools for private sends, MPP sessions, Privacy Links, Verify, relayer, Telegram, and admin operations without merging agent, relayer, and treasury authority."
 ---
 
 - [View MCP Source](https://github.com/Parlyfi/parly-mcp)
@@ -10,7 +10,7 @@ description: "Parly includes an MCP server for agentic workflows. It exposes bou
 
 ## What the MCP server is
 
-The Parly MCP Server gives AI agents a bounded way to recover private state and execute shielded payments through Parly.
+The Parly MCP Server gives AI agents a bounded way to recover private state, preflight and send private payments, and interact with Parly app APIs when the operator enables the web API bridge.
 
 It is designed for agent-owned workflows, with clear separation between agent credentials, relayer infrastructure, and treasury authority.
 
@@ -22,23 +22,37 @@ This is one of the most important safety boundaries in the Parly stack.
 
 ## What the MCP server exposes
 
-The MCP server supports:
+Private balance tools:
 
 - recover\_largest\_note
-- execute\_shielded\_payment
+- preflight\_shielded\_payment
+- send\_shielded\_payment
+- execute\_shielded\_payment, kept as a compatibility alias
 
-When MPP compatibility is enabled, it may also support:
+MPP tools:
 
 - mpp\_create\_session
+- mpp\_preflight\_session\_payment
 - mpp\_settle\_session\_payment
+
+When the web API bridge is configured, the MCP server can also expose app tools for:
+
+- Privacy Links status, public reads, owner lists, claims, publishing, visibility, reports, and social status
+- one-time deposit creation, wallet-deposit route quotes, payment status, payout status, refund claims, and invoice receipt verification
+- public relayer listing and relayer registration helpers
+- admin operations summary, reports, reserved names, payout queue, signed workflow actions, UI settings, and Telegram status
 
 ## recover\_largest\_note
 
 This tool recovers the largest live note controlled by the configured agent credential for a given asset. It is useful for agents that need to reason about current private spendable balance before attempting execution.
 
-## execute\_shielded\_payment
+## preflight\_shielded\_payment
 
-This tool executes a private Parly payment from notes controlled by the configured agent credential. It is the direct immediate execution path for agent workflows.
+This tool validates one private payment request before proof generation or transaction submission. It is useful when an agent needs to check the route shape, asset lane, destination, and amount before attempting a send.
+
+## send\_shielded\_payment
+
+This tool sends a private Parly payment from notes controlled by the configured agent credential. It is the direct immediate send path for agent workflows.
 
 ## mpp\_create\_session
 
@@ -48,12 +62,19 @@ This tool creates an MPP-compatible session descriptor around the current agent-
 
 This tool settles a Parly payment from a previously created session descriptor. It reuses the same execution engine rather than introducing a separate settlement protocol.
 
+## Web API tools
+
+Web API tools call the same routes used by the Parly app. They do not bypass wallet signatures, admin sessions, rate limits, 403 policy checks, or audit history.
+
+Use `PARLY_WEB_API_BASE_URL` to enable this bridge. Admin routes still require an admin session or signed workflow authorization. Relayer keys and treasury keys do not belong in MCP runtime configuration.
+
 ## Runtime behavior
 
 When the MCP server starts, it should make the active credential scope and adapter state explicit. That includes:
 
 - whether it is running with the agent credential only
 - whether MPP compatibility is enabled
+- whether web API tools are enabled
 - which service name and version are active when the adapter is used
 
 ## Who it is for

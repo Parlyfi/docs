@@ -1,6 +1,6 @@
 ---
 title: "Parly SDK"
-description: "The SDK is the developer integration layer for Parly. It helps services, operators, automation systems, and machine-payment environments integrate private stablecoin execution without re-implementing core client logic."
+description: "The SDK is the developer integration layer for Parly private stablecoin payments. It helps services, operators, automation systems, and machine-payment environments integrate recovery, private sends, and MPP-compatible sessions without re-implementing core client logic."
 ---
 
 - [View SDK Source](https://github.com/Parlyfi/parly-sdk)
@@ -10,7 +10,7 @@ description: "The SDK is the developer integration layer for Parly. It helps ser
 
 ## What the SDK is
 
-The SDK exists so developers can use Parly without rebuilding deterministic authentication, recovery identity derivation, note-envelope handling, note reconstruction, execution request construction, exact approval logic, and outcome handling from scratch.
+The SDK exists so developers can use Parly without rebuilding deterministic authentication, recovery identity derivation, note-envelope handling, note reconstruction, private-send construction, exact approval logic, indexed history reads, and outcome handling from scratch.
 
 It is intended for backend services, operator tooling, automation systems, and AI-agent stacks that need Parly-compatible private execution behavior.
 
@@ -27,9 +27,11 @@ pnpm add @parly/sdk
 import { ParlySDK, ParlyMppAdapter } from "@parly/sdk"
 
 const sdk = new ParlySDK({
-  credential: integrationCredential,
-  tempoChainId,
-  tempoRpcUrl
+  privateKeyHex: integrationPrivateKey,
+  tempoRpcUrl,
+  tempoChainId: 4217,
+  tempoLzEid: 4217,
+  ponderGraphqlUrl
 })
 
 const mpp = new ParlyMppAdapter(sdk, {
@@ -47,11 +49,11 @@ The SDK includes support for:
 - deterministic recovery key derivation from the fixed auth message
 - note-envelope decryption
 - reconstruction of private state from indexed history
-- private execution flow construction
-- direct execution path construction
+- private payment flow construction
+- direct send path construction
 - exact-amount approval handling
 - clear handling of uncertain or pending execution outcomes
-- optional MPP-compatible wrappers above the same execution engine
+- optional MPP-compatible wrappers above the same send engine
 
 ## MPP-compatible integration
 
@@ -82,6 +84,21 @@ const outcome = await mpp.settleFromSession(
   session
 )
 ```
+
+Preflight before settlement:
+
+```ts
+const preflight = mpp.preflightSessionPayment(
+  {
+    sessionId: session.sessionId,
+    destination: "0x1111111111111111111111111111111111111111",
+    amount: "25.0"
+  },
+  session
+)
+```
+
+MPP session payments are bounded to the session counterparty and spend limit before proof generation or transaction submission.
 
 ## Who the SDK is for
 
