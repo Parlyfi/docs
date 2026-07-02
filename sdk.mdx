@@ -93,7 +93,7 @@ MPP sessions are counterparty-locked and spend-limit checked before proof work o
 
 Use `sendShieldedBatchPayment()` for up to 10 same-chain payout lanes from a recovered private note.
 
-Cross-chain deposits are handled by Parly payment-route APIs. Cross-chain private sends require a dedicated public payout route before they are exposed through the SDK.
+Cross-chain deposits are handled by Parly payment-route APIs. Cross-chain private sends should be used only where the active public route supports them.
 
 ## Who the SDK is for
 

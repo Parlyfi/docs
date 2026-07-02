@@ -1,0 +1,35 @@
+---
+title: "Batch and CSV Payments"
+description: "Send multiple private payout lanes from one Parly execution where supported."
+---
+
+- [Open App](https://parly.fi/app)
+- [Using the App](/app)
+- [Verify Payouts](/verify)
+
+## What batch send is
+
+Batch send lets a user prepare multiple payout lanes from one private execution where supported.
+
+The App supports up to 10 payout outputs in one batch.
+
+## CSV import
+
+CSV import helps teams prepare repeated or larger payment lists without manually entering every row.
+
+A CSV should include the required destination, amount, and route columns shown by the App.
+
+The App validates the rows before execution. Invalid addresses, unsupported destinations, unsupported assets, and malformed amounts should fail before a payment is submitted.
+
+## Privacy model
+
+Batch send is still selective by design.
+
+A user can disclose or verify one payout lane without exposing the rest of the batch.
+
+## Good practices
+
+- Review every imported row before signing.
+- Keep amounts and destinations exact.
+- Use a fresh CSV when payment details change.
+- Export only the records you need to share.

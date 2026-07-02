@@ -33,7 +33,16 @@
             "group": "Product",
             "pages": [
               "app",
+              "privacy-links",
+              "profiles",
+              "invoices",
+              "deposits",
+              "refund-wallets",
+              "ledger-receipts",
+              "batch-csv",
+              "cross-chain",
               "verify",
+              "verify-invoice",
               "architecture"
             ]
           },
