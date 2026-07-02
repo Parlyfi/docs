@@ -1,6 +1,6 @@
 ---
 title: "Relayer Registry"
-description: "The relayer registry supports app discovery and relayer public-key distribution. It does not permission the protocol and it does not create exclusive relay rights."
+description: "How public relayer discovery works for the Parly App."
 ---
 
 - [Relayer Registration](https://parly.fi/relayer)
@@ -9,45 +9,55 @@ description: "The relayer registry supports app discovery and relayer public-key
 
 ## What the registry is for
 
-The Parly App needs to know which relayer execution addresses are discoverable and which relayer public keys it may encrypt bundles to. That is what the registry does.
+The registry helps the Parly App discover relayers and their public encryption keys.
 
-## Registry policy
-
-The Parly registry supports a maximum of 10 live relayers.
-
-Registration is automatic if validation passes and a slot is available. Inactive relayers are removed from live discovery so slots can reopen while keeping the registry lean and operator-grade.
+When a user selects a supported private relay path, the App needs an active relayer entry so it can encrypt work to the correct public key.
 
 ## Register a relayer
 
-Go to:
+Open:
 
-`parly.fi/relayer`
+`https://parly.fi/relayer`
 
 You will need:
 
 - the relayer execution address
 - the Base64 relayer public key
-- a wallet signature proving control of the submitted execution address
+- a browser wallet connected to the same execution address
+- a wallet signature proving control of that address
 
-Registration succeeds automatically if:
+You can also run the relayer runtime with `RELAYER_REGISTRY_API_BASE_URL` configured so the runtime keeps its registry entry and heartbeat current.
+
+## Registry rules
+
+The official app discovery list has a maximum of 10 active relayers.
+
+Registration succeeds automatically when:
 
 - the registry is open
-- the address is valid
+- the execution address is valid
 - the public key is valid
 - the signature is valid
-- the relayer is not a duplicate entry
+- the address and public key are not duplicate active entries
+
+Inactive relayers can be removed from active discovery so slots remain usable.
 
 ## Registry states
 
-**Verified**\
-Live in app discovery.
+**Verified**
 
-**Inactive**\
-Previously live, now removed from discovery because of inactivity, operator withdrawal, manual disable action, or failed health expectations.
+The relayer is live in public app discovery.
 
-**Rejected**\
-Failed automatic validation.
+**Inactive**
 
-## Important note
+The relayer is not currently live in app discovery. This can happen after inactivity, operator withdrawal, disablement, or failed health expectations.
 
-Listing improves public app discovery only. It does not control whether the protocol is open, and it does not prevent advanced users, SDK users, or custom frontend operators from targeting independent relayers directly.
+**Rejected**
+
+The registration did not pass automatic validation.
+
+## Important boundary
+
+Registry listing is discovery only.
+
+It does not give the relayer treasury control, admin control, or exclusive access to protocol activity.

@@ -1,6 +1,6 @@
 ---
 title: "Parly MCP Server"
-description: "Parly includes an MCP server for agentic workflows. It exposes bounded tools over agent-owned execution only and keeps agent, relayer, and treasury responsibilities separate."
+description: "Parly includes an MCP server for agentic workflows. It exposes public-user payment tools while keeping agent credentials separate from relayer and treasury authority."
 ---
 
 - [View MCP Source](https://github.com/Parlyfi/parly-mcp)
@@ -16,9 +16,9 @@ It is designed for agent-owned payment workflows that use Parly's public app API
 
 ## Security model
 
-The MCP server should run with an agent credential only. It should not inherit relayer execution power, relayer sealed-box credentials, or treasury control.
+The MCP server should run with an agent credential only. It should not inherit relayer execution power, relayer sealed-box credentials, or treasury authority.
 
-This is one of the most important safety boundaries in the Parly stack.
+This separation keeps agent workflows useful without turning them into operator or governance tools.
 
 ## What the MCP server exposes
 
@@ -37,9 +37,23 @@ When MPP compatibility is enabled, it may also support:
 - mpp\_preflight\_session\_payment
 - mpp\_settle\_session\_payment
 
-When the public web API bridge is configured, MCP may also call public-user APIs for Privacy Links, supported cross-chain deposit routes, payment status, payer history, short-lived receipt download URLs, Verify, and relayer registration.
+When the public web API bridge is configured, MCP can call public-user APIs for:
 
-Operational controls are handled in Parly's governed product surfaces.
+- Privacy Link status and public reads
+- owned Privacy Link listing
+- profile and invoice link claim, create, edit, publish, and visibility updates
+- profile and invoice payment preparation
+- profile and invoice one-time deposit address creation
+- supported wallet-deposit quotes
+- payment, payout, and payer-history status reads
+- failed-payment refund claims where available
+- short-lived receipt download URLs
+- invoice receipt verification
+- payout-scope verification
+- public relayer listing and relayer registration
+- CSV parsing for supported batch payment workflows
+
+Treasury and admin controls are not exposed as public MCP tools.
 
 ## recover\_largest\_note
 
@@ -56,7 +70,7 @@ Batch tools support up to 10 same-chain payout lanes from one private note:
 - preflight\_batch\_shielded\_payment
 - send\_batch\_shielded\_payment
 
-Cross-chain deposits use the public payment-route APIs. Cross-chain private sends require a dedicated public payout route before they are exposed through MCP.
+Cross-chain deposits use the public payment-route APIs. Cross-chain private sends are exposed only where the active public route supports them.
 
 ## mpp\_create\_session
 
