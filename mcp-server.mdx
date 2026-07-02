@@ -1,6 +1,6 @@
 ---
 title: "Parly MCP Server"
-description: "Parly includes an MCP server for agentic workflows. It exposes bounded tools for private sends, MPP sessions, Privacy Links, Verify, relayer, Telegram, and admin operations without merging agent, relayer, and treasury authority."
+description: "Parly includes an MCP server for agentic workflows. It exposes public-user payment tools while keeping agent credentials separate from relayer and treasury authority."
 ---
 
 - [View MCP Source](https://github.com/Parlyfi/parly-mcp)
@@ -12,13 +12,13 @@ description: "Parly includes an MCP server for agentic workflows. It exposes bou
 
 The Parly MCP Server gives AI agents a bounded way to recover private state, preflight and send private payments, and interact with Parly app APIs when the operator enables the web API bridge.
 
-It is designed for agent-owned workflows, with clear separation between agent credentials, relayer infrastructure, and treasury authority.
+It is designed for agent-owned payment workflows that use Parly's public app APIs safely.
 
 ## Security model
 
-The MCP server should run with an agent credential only. It should not inherit relayer execution power, relayer sealed-box credentials, or treasury control.
+The MCP server should run with an agent credential only. It should not inherit relayer execution power, relayer sealed-box credentials, or treasury authority.
 
-This is one of the most important safety boundaries in the Parly stack.
+This separation keeps agent workflows useful without turning them into operator or governance tools.
 
 ## What the MCP server exposes
 
@@ -28,6 +28,9 @@ Private balance tools:
 - preflight\_shielded\_payment
 - send\_shielded\_payment
 - execute\_shielded\_payment, kept as a compatibility alias
+- preflight\_batch\_shielded\_payment
+- send\_batch\_shielded\_payment
+- execute\_shielded\_payment, as a compatibility alias
 
 MPP tools:
 
@@ -41,6 +44,23 @@ When the web API bridge is configured, the MCP server can also expose app tools 
 - one-time deposit creation, wallet-deposit route quotes, payment status, payout status, refund claims, and invoice receipt verification
 - public relayer listing and relayer registration helpers
 - admin operations summary, reports, reserved names, payout queue, signed workflow actions, UI settings, and Telegram status
+When the public web API bridge is configured, MCP can call public-user APIs for:
+
+- Privacy Link status and public reads
+- owned Privacy Link listing
+- profile and invoice link claim, create, edit, publish, and visibility updates
+- profile and invoice payment preparation
+- profile and invoice one-time deposit address creation
+- supported wallet-deposit quotes
+- payment, payout, and payer-history status reads
+- failed-payment refund claims where available
+- short-lived receipt download URLs
+- invoice receipt verification
+- payout-scope verification
+- public relayer listing and relayer registration
+- CSV parsing for supported batch payment workflows
+
+Treasury and admin controls are not exposed as public MCP tools.
 
 ## recover\_largest\_note
 
@@ -53,6 +73,18 @@ This tool validates one private payment request before proof generation or trans
 ## send\_shielded\_payment
 
 This tool sends a private Parly payment from notes controlled by the configured agent credential. It is the direct immediate send path for agent workflows.
+## send\_shielded\_payment
+
+This tool sends a private Parly payment from notes controlled by the configured agent credential. It is the direct immediate send path for agent workflows.
+
+## batch private sends
+
+Batch tools support up to 10 same-chain payout lanes from one private note:
+
+- preflight\_batch\_shielded\_payment
+- send\_batch\_shielded\_payment
+
+Cross-chain deposits use the public payment-route APIs. Cross-chain private sends are exposed only where the active public route supports them.
 
 ## mpp\_create\_session
 
@@ -67,6 +99,7 @@ This tool settles a Parly payment from a previously created session descriptor. 
 Web API tools call the same routes used by the Parly app. They do not bypass wallet signatures, admin sessions, rate limits, 403 policy checks, or audit history.
 
 Use `PARLY_WEB_API_BASE_URL` to enable this bridge. Admin routes still require an admin session or signed workflow authorization. Relayer keys and treasury keys do not belong in MCP runtime configuration.
+MPP settlement is counterparty-locked and spend-limit checked before proof work or settlement.
 
 ## Runtime behavior
 

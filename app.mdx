@@ -5,6 +5,8 @@ description: "The Parly App is the primary user-facing surface for shielding, re
 
 - [Open App](https://parly.fi/app)
 - [Open Verify](https://parly.fi/verify)
+- [Privacy Links](/privacy-links)
+- [Wallet and One-Time Deposits](/deposits)
 - [How Parly Works](/)
 
 ## What the App is for
@@ -30,26 +32,26 @@ Shielding moves supported stablecoins into a private balance on Tempo.
 
 There are two shielding paths:
 
-- direct shielding on Tempo
-- spoke-origin shielding into Tempo
+- deposit from wallet
+- one-time deposit address
 
 The Shield flow guides the user through network selection, asset selection, amount entry, approval where required, confirmation, and confirmed private-balance entry.
 
+Supported cross-chain deposits use Parly payment-route APIs. The app shows the route, status, and refund path without exposing the user's private balance history.
+
 ## Execute
 
-The Execute surface is where a user spends from private balance.
+The Send surface is where a user spends from private balance.
 
 It supports:
 
 - single send
-- batch send
-- CSV-driven payout flows
+- batch send for up to 10 same-chain payout lanes
 - private same-network payouts on Tempo
-- private cross-network stablecoin-only payouts to supported spokes
 - private relay by default
 - self-relay fallback
 
-For multi-recipient workflows, batch send and CSV-driven payouts support payroll, vendor disbursement, contributor payments, and structured treasury movement.
+Cross-chain private sends are available only where the active public route supports them.
 
 The App clearly separates submitted, pending, confirmed, and failed states.
 
@@ -64,6 +66,20 @@ This surface supports:
 - activity review
 - scoped receipts
 - proof preparation
+- receipt PDF download where a receipt token is available
+
+## Privacy Links
+
+Privacy Links let users create profile links for open-ended payments and invoice links for a specific amount, asset, and recipient context.
+
+Payment links support deposit from wallet and one-time deposit address flows. Payers can keep a receipt or verify settlement without exposing the recipient's private Parly balance.
+
+For the full user manual, see:
+
+- [Privacy Links](/privacy-links)
+- [Parly Profile Links](/profiles)
+- [Privacy Invoice Links](/invoices)
+- [Refund Wallets](/refund-wallets)
 
 ## Scoped receipts
 

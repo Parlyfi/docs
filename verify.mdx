@@ -1,9 +1,10 @@
 ---
-title: "Verify a Payout"
-description: "Parly Verify allows a counterparty, auditor, exchange, or reviewer to confirm one disclosed payout lane from a real Parly execution using a confirmed Tempo transaction hash and a child key."
+title: "Verify Payouts and Invoices"
+description: "Parly Verify lets a counterparty, auditor, exchange, payer, or reviewer confirm one disclosed payout lane or one invoice settlement receipt."
 ---
 
 - [Open Verify](https://parly.fi/verify)
+- [Verify Invoice Settlement](/verify-invoice)
 - [Using the App](/app)
 - [How Parly Works](/)
 
@@ -11,24 +12,29 @@ description: "Parly Verify allows a counterparty, auditor, exchange, or reviewer
 
 Verify is the public selective-disclosure surface for Parly.
 
-It answers one narrow question clearly: does this disclosed child key correspond to a real payout lane in the referenced Parly execution?
+It answers narrow questions clearly:
 
-That makes Verify useful for counterparties, auditors, finance teams, exchanges, and compliance reviewers who need confidence in one disclosed payment without demanding access to the sender's full private history.
+- does this disclosed child key correspond to a real payout lane in the referenced Parly execution?
+- does this invoice receipt token correspond to a completed Parly invoice settlement?
+
+That makes Verify useful for counterparties, auditors, finance teams, exchanges, payers, and compliance reviewers who need confidence in one disclosed payment without demanding access to a full private history.
 
 ## What you need
 
-To use Verify, you need:
+To verify a payout, you need:
 
 - the confirmed Tempo transaction hash
 - the disclosed child key
 
 Those values are usually shared in a scoped receipt or directly by the payer.
 
+To verify an invoice, use the invoice verification token or direct verification link from the receipt.
+
 ## What Verify checks
 
 Verify checks whether the disclosed child key matches a real payout lane associated with the referenced Parly execution.
 
-Depending on the available indexed and scoped data, the result may display:
+Depending on the available indexed and scoped data, a payout result may display:
 
 - settlement confirmation
 - payout recipient
@@ -38,6 +44,8 @@ Depending on the available indexed and scoped data, the result may display:
 
 The purpose is to prove the disclosed lane cleanly, publicly, and independently.
 
+Invoice verification confirms settlement only. It does not confirm goods or services delivery, identity, or private business terms.
+
 ## Who Verify is for
 
 Verify is for anyone who needs confidence in one disclosed payout lane without opening the wider private set.
@@ -46,7 +54,7 @@ That includes:
 
 - exchanges checking a claimed receipt
 - counterparties verifying a payment
-- internal finance reviewers
+- finance and reconciliation reviewers
 - auditors reviewing one specific lane
 - compliance teams checking a disclosed record
 

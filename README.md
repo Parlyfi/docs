@@ -10,7 +10,7 @@ This repository is the Mintlify public docs surface for Parly.
 
 ## Source of truth
 
-Before editing public docs, read the reference files in `references/`. The runbook and core PRD govern launch-law accuracy. The hosted docs, UI/UX blueprint, relayer registry PRD, and Phase 2 document govern public framing, registry behavior, and removable analytics boundaries.
+Keep public docs aligned with the live product, public repositories, and current Terms of Service. Do not publish internal runbook language, launch-only labels, or unsupported features as user-facing docs.
 
 ## Public source surfaces
 

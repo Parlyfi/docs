@@ -1,0 +1,63 @@
+---
+title: "Wallet and One-Time Deposits"
+description: "Use deposit from wallet or a one-time deposit address to fund a private Parly balance."
+---
+
+- [Open App](https://parly.fi/app)
+- [Refund Wallets](/refund-wallets)
+- [Cross-Chain Routes](/cross-chain)
+
+## Deposit methods
+
+Parly supports two user-facing deposit methods where routes are available.
+
+## Deposit from wallet
+
+Deposit from wallet is the connected-wallet path.
+
+Use it when you want to pay directly from the wallet connected to the App or a public payment link.
+
+The flow may ask you to:
+
+1. choose network and asset
+2. enter the amount
+3. review route and fees
+4. approve the asset if approval is required
+5. sign or submit the transaction
+6. wait for settlement and private-balance recovery
+
+## One-time deposit address
+
+A one-time deposit address is generated for a specific payment instruction.
+
+Use it when you want to send from a supported wallet, exchange, or app that cannot connect directly to Parly.
+
+The flow may ask you to:
+
+1. choose network, asset, and amount
+2. provide a refund wallet you control
+3. confirm the source acknowledgement
+4. generate the one-time address
+5. send exactly the displayed asset and amount before expiry
+6. wait for payment detection and settlement
+
+Do not reuse an expired address or send a different asset than the one displayed.
+
+## Supported assets
+
+Supported assets depend on the selected route.
+
+Tempo routes may show Tempo-native labels such as USDC.e and USDT0. Other supported networks may show USDC and USDT where those routes are available.
+
+## Status states
+
+Deposit flows can show:
+
+- awaiting payment
+- pending
+- completed
+- failed
+- expired
+- refund available
+
+If a state is unclear, use the receipt, status page, or support path shown by the App. Do not send a second payment unless the App gives a fresh instruction.
