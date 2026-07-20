@@ -11,7 +11,9 @@ description: "Send multiple private payout lanes from one Parly execution where 
 
 Batch send lets a user prepare multiple payout lanes from one private execution where supported.
 
-The App supports up to 10 payout outputs in one batch.
+Tempo batch payouts support up to 10 outputs in one private execution.
+
+Cross-chain payout rows currently need to be sent separately. Parly does not combine them into a shared withdrawal until every recipient can retain an independent route, status, receipt, and refund path. The App fails closed instead of presenting a partially supported cross-chain batch.
 
 ## CSV import
 
@@ -25,7 +27,7 @@ The App validates the rows before execution. Invalid addresses, unsupported dest
 
 Batch send is still selective by design.
 
-A user can disclose or verify one payout lane without exposing the rest of the batch.
+A user can disclose or verify one completed payout lane without exposing the rest of a Tempo batch.
 
 ## Good practices
 
